@@ -5,4 +5,5 @@ import javafx.event.ActionEvent;
 public class ChatBox {
     public void onHelloButtonClick(ActionEvent actionEvent) {
     }
+    //enter
 }
