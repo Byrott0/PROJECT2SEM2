@@ -2,7 +2,7 @@ name: sigrid-publish
 on:
   push:
     branches:
-      - "main"
+      - "master"
 
 jobs:
   sigridci:
@@ -17,4 +17,4 @@ jobs:
       - name: "Run Sigrid CI"
         env:
           SIGRID_CI_TOKEN: "${{ secrets.SIGRID_CI_TOKEN }}"
-        run: "./sigridci/sigridci/sigridci.py --customer hhsproject2 --system 2324-Projectgroep-kg --source . --publish"
+        run: "./sigridci/sigridci/sigridci.py --customer hhsproject2 --system 2324-Projectgroep-2a --source . --publish"
