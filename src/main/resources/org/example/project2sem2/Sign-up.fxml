@@ -21,12 +21,12 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="48.0" layoutY="175.0" text="Email" textFill="#a2a2a2">
+      <Label layoutX="41.0" layoutY="173.0" text="Email" textFill="#a2a2a2">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="52.0" layoutY="244.0" text="Password" textFill="#a2a2a2">
+      <Label layoutX="42.0" layoutY="244.0" text="Password" textFill="#a2a2a2">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -34,12 +34,12 @@
       <TextField fx:id="usernameField" layoutX="41.0" layoutY="130.0" prefHeight="35.0" prefWidth="180.0" />
       <TextField fx:id="emailField" layoutX="41.0" layoutY="200.0" prefHeight="35.0" prefWidth="180.0" />
       <TextField fx:id="passwordField" layoutX="41.0" layoutY="264.0" prefHeight="35.0" prefWidth="180.0" />
-      <Button fx:id="meldAanButton" layoutX="41.0" layoutY="335.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #2681cc;" text="Meld aan" textFill="WHITE" onAction="#onMeldAanButtonClick">
+      <Button fx:id="meldAanButton" layoutX="41.0" layoutY="335.0" mnemonicParsing="false" onAction="#onMeldAanButtonClick" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #2681cc;" text="Meld aan" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ikBenAlEenGebruikerButton" layoutX="168.0" layoutY="335.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #2681cc;" text="Ik ben al een gebruiker" textFill="WHITE" onAction="#onIkBenAlEenGebruikerButtonClick">
+      <Button fx:id="ikBenAlEenGebruikerButton" layoutX="168.0" layoutY="335.0" mnemonicParsing="false" onAction="#onIkBenAlEenGebruikerButtonClick" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #2681cc;" text="Ik ben al een gebruiker" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -51,5 +51,6 @@
             <Image url="@../../../images/image__2_-removebg-preview.png" />
          </image>
       </ImageView>
+      <Line endX="28.399993896484375" endY="243.99996948242188" layoutX="370.0" layoutY="185.0" startX="28.399993896484375" startY="-185.0" />
    </children>
 </AnchorPane>
