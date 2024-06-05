@@ -4,6 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+
+//class indeling en namen moeten gecorrigeerd worden
+
+
 public class Chat {
     @FXML
     private Button chatlistID;
