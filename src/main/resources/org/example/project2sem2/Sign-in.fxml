@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="701.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="41.0" layoutY="42.0" text="Sign Up">
@@ -18,7 +17,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="48.0" layoutY="175.0" text="Mail" textFill="#a2a2a2">
+      <Label layoutX="48.0" layoutY="175.0" text="Email" textFill="#a2a2a2">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
