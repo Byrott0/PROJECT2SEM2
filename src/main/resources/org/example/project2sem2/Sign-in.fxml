@@ -48,7 +48,7 @@
       <Line endX="47.399993896484375" endY="3.0517578125E-5" layoutX="97.0" layoutY="374.0" startX="-50.99999237060547" startY="3.0517578125E-5" />
       <ImageView fitHeight="302.0" fitWidth="329.0" layoutX="392.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Downloads/image__2_-removebg-preview.png" />
+            <Image url="@../../../images/image__2_-removebg-preview.png" />
          </image>
       </ImageView>
    </children>
