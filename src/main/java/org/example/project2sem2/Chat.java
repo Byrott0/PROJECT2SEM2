@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+import java.util.ArrayList;
+
 
 //class indeling en namen moeten gecorrigeerd worden
 
@@ -41,5 +43,17 @@ public class Chat {
     }
 
     public void switchToLoginPage(ActionEvent actionEvent) {
+    }
+
+    public void test() {
+        var list = new ArrayList<String>();
+
+
+        var filtered = list.stream()
+                .map(s -> s + "a")
+                .filter(l -> l.contains("bla")).toList();
+
+
+
     }
 }
