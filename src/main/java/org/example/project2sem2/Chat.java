@@ -3,10 +3,7 @@ package org.example.project2sem2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
-
-//class indeling en namen moeten gecorrigeerd worden
-
+import javafx.scene.control.MenuItem;
 
 public class Chat {
     @FXML
@@ -16,30 +13,44 @@ public class Chat {
     @FXML
     private Button textfieldEnterID;
 
-    private String ChatBot;
-    private String ResponsiveMessage;
+    @FXML
+    private MenuItem accountBeheerID;
+    @FXML
+    private MenuItem adminID;
+    @FXML
+    private MenuItem uitloggenID;
 
-    public Chat(String ResponsiveMessage, String ChatBot) {
-        this.ResponsiveMessage = ResponsiveMessage;
-        this.ChatBot = ChatBot;
+    public Chat() {
+        // ...
     }
 
-
+    @FXML
     public void addChat(ActionEvent actionEvent) {
+        // ...
     }
 
+    @FXML
     public void openFileChooser(ActionEvent actionEvent) {
+        // ...
     }
 
+    @FXML
     public void checkText(ActionEvent actionEvent) {
+        // ...
     }
 
+    @FXML
     public void goToAccountBeheerScherm(ActionEvent actionEvent) {
+        // ...
     }
 
+    @FXML
     public void goToAdminPage(ActionEvent actionEvent) {
+        // ...
     }
 
+    @FXML
     public void switchToLoginPage(ActionEvent actionEvent) {
+        // ...
     }
 }

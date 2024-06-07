@@ -46,8 +46,6 @@
       <MenuButton fx:id="instellingenID" layoutX="669.0" layoutY="18.0" minWidth="80.0" prefHeight="25.0" prefWidth="115.0" text="Instellingen">
          <items>
             <MenuItem fx:id="accountBeheerID" mnemonicParsing="false" onAction="#goToAccountBeheerScherm" text="Mijn account" />
-            <MenuItem fx:id="adminID" mnemonicParsing="false" onAction="#goToAdminPage" text="Admin" />
-            <MenuItem fx:id="faqsID" mnemonicParsing="false" text="FAQS" />
             <MenuItem fx:id="uitloggenID" mnemonicParsing="false" onAction="#switchToLoginPage" text="Uitloggen" />
          </items>
          <font>
