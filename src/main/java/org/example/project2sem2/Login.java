@@ -70,12 +70,8 @@ public class Login {
     }
 
     private boolean isValidCredentials(String username, String password) {
-        // Hardcode de geldige gebruikersnaam en het wachtwoord
-        String validUsername = "admin";
-        String validPassword = "password";
-
-        // Controleer of de ingevoerde gebruikersnaam en het wachtwoord overeenkomen met de geldige gebruikersnaam en het wachtwoord
-        return username.equals(validUsername) && password.equals(validPassword);
+        DataBaseLogin dataBaseLogin = new DataBaseLogin();
+        return dataBaseLogin.login(username, password);
     }
 
     private void LoginNaarChatbox(ActionEvent event) {
