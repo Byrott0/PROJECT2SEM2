@@ -61,18 +61,20 @@ public class Login {
     private void handleLoginButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-
-        if (isValidCredentials(username, password)) {
+        
+        if (username.isEmpty() || password.isEmpty()) {
+            System.out.println("Vul alle velden in.");
+            return;
+        }
+        Logincontroller logincontroller = new Logincontroller();
+        if (logincontroller.isValidCredentials(username, password)) {
             LoginNaarChatbox(event);
         } else {
             // Toon een foutmelding aan de gebruiker
         }
     }
 
-    private boolean isValidCredentials(String username, String password) {
-        DataBaseLogin dataBaseLogin = new DataBaseLogin();
-        return dataBaseLogin.login(username, password);
-    }
+   
 
     private void LoginNaarChatbox(ActionEvent event) {
         try {
