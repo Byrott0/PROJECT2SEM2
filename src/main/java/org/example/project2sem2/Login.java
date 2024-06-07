@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-public class LoginController {
+public class Login {
 
     public Button naarSignUp;
     private String Username;
@@ -33,10 +33,10 @@ public class LoginController {
     private Button loginButton;
 
 
-    public LoginController() {
+    public Login() {
     }
 
-    public LoginController(String Username, String Email, String Password) {
+    public Login(String Username, String Email, String Password) {
         this.Username = Username;
         this.Email = Email;
         this.Password = Password;
