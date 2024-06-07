@@ -61,41 +61,20 @@ public class Login {
     private void handleLoginButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-
-        if (isValidCredentials(username, password)) {
+        
+        if (username.isEmpty() || password.isEmpty()) {
+            System.out.println("Vul alle velden in.");
+            return;
+        }
+        Logincontroller logincontroller = new Logincontroller();
+        if (logincontroller.isValidCredentials(username, password)) {
             LoginNaarChatbox(event);
         } else {
             // Toon een foutmelding aan de gebruiker
         }
     }
 
-    private boolean isValidCredentials(String username, String password) {
-        // Maak verbinding met de database
-        String url = "jdbc:sqlite:identifier.sqlite";
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                // Maak een SQL-query om de gebruiker op te zoeken
-                String sql = "SELECT * FROM users WHERE name = ? AND password = ?";
-
-                // Voer de query uit
-                try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                    pstmt.setString(1, username);
-                    pstmt.setString(2, password);
-                    try (ResultSet rs = pstmt.executeQuery()) {
-                        // Als er een resultaat is, dan is de gebruikersnaam en het wachtwoord geldig
-                        if (rs.next()) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        // Als we hier komen, dan is de gebruikersnaam en het wachtwoord niet geldig
-        return false;
-    }
+   
 
     private void LoginNaarChatbox(ActionEvent event) {
         try {
