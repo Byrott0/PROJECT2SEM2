@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class databaseConnection {
 
-    private String URL = "jdbc:mysql://sqldatabase.mysql.database.azure.com:3306";
+    private String url = "jdbc:mysql://sqldatabase.mysql.database.azure.com:3306/project";
     private String user = "AdminH";
     private String password = "Haagsegoon?";
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, user, password);
+        return DriverManager.getConnection(url, user, password);
     }
 }
