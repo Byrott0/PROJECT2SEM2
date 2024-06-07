@@ -57,6 +57,12 @@ public class Login {
         loginButton.setOnAction(this::handleLoginButtonAction);
     }
 
+    private DataBaseLogin dataBaseLogin = new DataBaseLogin();
+
+    private boolean isValidCredentials(String username, String password) {
+        return dataBaseLogin.login(username, password);
+    }
+
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
         String username = usernameField.getText();
@@ -67,14 +73,12 @@ public class Login {
             return;
         }
         Logincontroller logincontroller = new Logincontroller();
-        if (logincontroller.isValidCredentials(username, password)) {
+        if (isValidCredentials(username, password)) {
             LoginNaarChatbox(event);
         } else {
             // Toon een foutmelding aan de gebruiker
         }
     }
-
-   
 
     private void LoginNaarChatbox(ActionEvent event) {
         try {
