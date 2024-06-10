@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -23,7 +22,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="listviewID" layoutX="20.0" layoutY="86.0" prefHeight="447.0" prefWidth="106.0" styleClass="darkbackground" />
+      <ListView fx:id="listviewID" layoutX="20.0" layoutY="94.0" prefHeight="440.0" prefWidth="106.0" styleClass="darkbackground" />
       <Button fx:id="chatlistID" layoutX="20.0" layoutY="60.0" onAction="#addChat" prefWidth="106.0" text="+ New Chat">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -42,11 +41,15 @@
       </TextField>
       <Button fx:id="textfieldEnterID" layoutX="714.0" layoutY="551.0" minHeight="15.0" minWidth="15.0" onAction="#checkText" styleClass="textfieldEnterID" text="&gt;" />
       <ScrollBar fx:id="scrollbarID" layoutX="770.0" layoutY="86.0" orientation="VERTICAL" prefHeight="447.0" prefWidth="14.0" />
-      <TextArea fx:id="textAreaID" editable="false" layoutX="136.0" layoutY="86.0" prefHeight="447.0" prefWidth="632.0" promptText="Hier komt uw gesprek te staan." styleClass="text-fill2">
+      <TextArea fx:id="textAreaID" editable="false" layoutX="136.0" layoutY="93.0" prefHeight="440.0" prefWidth="632.0" promptText="Hier komt uw gesprek te staan." styleClass="text-fill2">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </TextArea>
-      <ImageView fx:id="image" fitHeight="125.0" fitWidth="125.0" layoutX="613.0" layoutY="109.0" />
+      <TextField layoutX="136.0" layoutY="60.0" promptText="Onderwerp:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

@@ -24,14 +24,14 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="415.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="usernameField" layoutX="100.0" layoutY="202.0" prefHeight="38.0" prefWidth="162.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="262.0" prefHeight="42.0" prefWidth="164.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="usernameField" layoutX="100.0" layoutY="202.0" prefHeight="38.0" prefWidth="162.0" promptText="Gebruikersnaam" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="262.0" prefHeight="42.0" prefWidth="164.0" promptText="Wachtwoord" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <Button fx:id="loginButton" layoutX="139.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefWidth="85.0" style="-fx-background-color: #1b7da0;" text="Log in" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Text fill="#1b7da0" layoutX="120.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" User Login" wrappingWidth="143.80076599121094">
+            <Text fill="#1b7da0" layoutX="105.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gebruiker Login" wrappingWidth="237.80076599121094">
                <font>
                   <Font name="System Bold" size="43.0" />
                </font>
