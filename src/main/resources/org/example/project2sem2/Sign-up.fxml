@@ -46,7 +46,7 @@
       </Button>
       <Line endX="100.60000610351562" endY="3.0517578125E-5" layoutX="245.0" layoutY="428.0" startX="-75.60000610351562" startY="3.0517578125E-5" />
       <Line endX="47.399993896484375" endY="3.0517578125E-5" layoutX="97.0" layoutY="428.0" startX="-50.99999237060547" startY="3.0517578125E-5" />
-      <ImageView fitHeight="302.0" fitWidth="329.0" layoutX="454.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="302.0" fitWidth="329.0" layoutX="457.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/image__2_-removebg-preview.png" />
          </image>
