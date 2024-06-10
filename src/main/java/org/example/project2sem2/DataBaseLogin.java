@@ -5,7 +5,7 @@ public class DataBaseLogin {
 
     private databaseConnection databaseConnection = new databaseConnection();
 
-    public boolean login(String username, String password) {
+    public Logincontroller login(String username, String password) {
         String selectQuery = "SELECT * FROM credentials WHERE username = ? AND password = ?";
 
         try (Connection connection = databaseConnection.getConnection();
@@ -16,12 +16,12 @@ public class DataBaseLogin {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return true; // User found
+                    return new Logincontroller(true, resultSet.getInt("id")); // User found
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false; // User not found
+        return new Logincontroller(false, -1); // User not found
     }
 }

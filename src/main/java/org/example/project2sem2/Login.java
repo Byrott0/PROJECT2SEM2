@@ -59,28 +59,25 @@ public class Login {
 
     private DataBaseLogin dataBaseLogin = new DataBaseLogin();
 
-    private boolean isValidCredentials(String username, String password) {
-        return dataBaseLogin.login(username, password);
-    }
-
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        
+
         if (username.isEmpty() || password.isEmpty()) {
             System.out.println("Vul alle velden in.");
             return;
         }
-        Logincontroller logincontroller = new Logincontroller();
-        if (isValidCredentials(username, password)) {
-            LoginNaarChatbox(event);
+
+        Logincontroller loginResult = dataBaseLogin.login(username, password);
+        if (loginResult.isSuccess()) {
+            LoginNaarChatbox(event, loginResult.getUserId());
         } else {
             // Toon een foutmelding aan de gebruiker
         }
     }
 
-    private void LoginNaarChatbox(ActionEvent event) {
+    private void LoginNaarChatbox(ActionEvent event, int userId) {
         try {
             Parent chatBoxParent = FXMLLoader.load(getClass().getResource("ChatBox.fxml"));
             Scene chatBoxScene = new Scene(chatBoxParent);
