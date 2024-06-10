@@ -1,21 +1,31 @@
 package org.example.project2sem2;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class SignUpController {
 
+    @FXML
+    private TextField usernameField;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private TextField passwordField;
+
     public Button naarSignUp;
-    private String Username;
-    private String Email;
-    private String Password;
+
+    private DataBaseSignUp dataBaseSignUp = new DataBaseSignUp();
 
     private Stage stage;
     private Scene scene;
@@ -24,13 +34,13 @@ public class SignUpController {
     public SignUpController() {
     }
 
-    public SignUpController(String Username, String Email, String Password) {
-        this.Username = Username;
-        this.Email = Email;
-        this.Password = Password;
-    }
-
     public void accountgemaaktNaarLogin(ActionEvent event) throws IOException {
+        String username = usernameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
+
+        dataBaseSignUp.insertIntoCredentials(username, password, email);
+
         Parent otherScreenParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene otherScreenScene = new Scene(otherScreenParent);
 
@@ -50,18 +60,5 @@ public class SignUpController {
 
         window.setScene(otherScreenScene);
         window.show();
-    }
-
-    public void setUsername(String Username) {
-        this.Username = Username;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-
-    }
-
-    public void setPassword(String password) {
-        Password = password;
     }
 }
