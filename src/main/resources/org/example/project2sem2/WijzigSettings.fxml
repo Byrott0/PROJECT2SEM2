@@ -7,10 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Settings">
    <children>
-      <Button layoutX="50.0" layoutY="462.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #534531;" text="Sla wijziging op" textFill="WHITE">
+      <Button layoutX="62.0" layoutY="469.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #534531;" text="Sla wijziging op" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -18,17 +19,17 @@
       <TextField layoutX="50.0" layoutY="183.0" prefHeight="35.0" prefWidth="181.0" />
       <TextField layoutX="50.0" layoutY="285.0" prefHeight="35.0" prefWidth="181.0" />
       <TextField layoutX="50.0" layoutY="389.0" prefHeight="35.0" prefWidth="181.0" />
-      <Label layoutX="54.0" layoutY="146.0" prefHeight="28.0" prefWidth="99.0" text="Email">
+      <Label layoutX="54.0" layoutY="146.0" prefHeight="28.0" prefWidth="99.0" text="Huidig Email">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="46.0" layoutY="250.0" prefHeight="35.0" prefWidth="115.0" text="Gebruikersnaam">
+      <Label layoutX="44.0" layoutY="240.0" prefHeight="35.0" prefWidth="171.0" text="Huidig Gebruikersnaam">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="46.0" layoutY="346.0" prefHeight="35.0" prefWidth="136.0" text="Nieuw wachtwoord">
+      <Label layoutX="46.0" layoutY="346.0" prefHeight="35.0" prefWidth="136.0" text="Huidig wachtwoord">
          <font>
             <Font size="15.0" />
          </font>
@@ -38,15 +39,48 @@
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <Button layoutX="256.0" layoutY="462.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #4758d3;" text="Terug naar Login" textFill="WHITE">
+      <Button layoutX="290.0" layoutY="469.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #4758d3;" text="Terug naar Login" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <ImageView fitHeight="268.0" fitWidth="276.0" layoutX="506.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="166.0" fitWidth="181.0" layoutX="609.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/tandwiel.png" />
          </image>
       </ImageView>
+      <TextField layoutX="296.0" layoutY="183.0" prefHeight="35.0" prefWidth="181.0" />
+      <Label layoutX="292.0" layoutY="146.0" prefHeight="28.0" prefWidth="99.0" text="Nieuw Email">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="296.0" layoutY="238.0" prefHeight="39.0" prefWidth="158.0" text="Nieuw Gebruikersnaam">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="296.0" layoutY="285.0" prefHeight="35.0" prefWidth="181.0" />
+      <Label layoutX="296.0" layoutY="346.0" prefHeight="35.0" prefWidth="136.0" text="Nieuw wachtwoord">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="296.0" layoutY="389.0" prefHeight="35.0" prefWidth="181.0" />
+      <Text layoutX="253.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;&gt;" wrappingWidth="19.41796875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="253.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;&gt;" wrappingWidth="19.41796875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="253.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;&gt;" wrappingWidth="19.41796875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
