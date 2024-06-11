@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.*;
+
 
 public class Login {
 
@@ -34,12 +34,6 @@ public class Login {
 
 
     public Login() {
-    }
-
-    public Login(String Username, String Email, String Password) {
-        this.Username = Username;
-        this.Email = Email;
-        this.Password = Password;
     }
 
     public void switchToSignup(ActionEvent event) throws IOException {
