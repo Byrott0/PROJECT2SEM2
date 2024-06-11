@@ -4,14 +4,12 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private History history;
 
     // Parameterized constructor
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.history = new History();
     }
 
     // Getter and Setter for username
@@ -39,14 +37,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    // Getter and Setter for history
-    public History getHistory() {
-        return history;
-    }
-
-    public void setHistory(History history) {
-        this.history = history;
     }
 }

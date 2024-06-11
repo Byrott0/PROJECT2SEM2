@@ -1,20 +1,18 @@
 package org.example.project2sem2.Utils;
 
-import org.example.project2sem2.Controller.ChatBoxController;
 import org.example.project2sem2.Model.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Database {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/project";
-    private static final String USER = "root";
-    private static final String PASSWORD = "Haagse";
+    private static final String URL = "jdbc:mysql://sqldatabase.mysql.database.azure.com:3306/project";
+    private static final String USER = "AdminH";
+    private static final String PASSWORD = "Haagsegoon?";
 
     // Private constructor to prevent instantiation
     private Database() {
@@ -40,7 +38,7 @@ public class Database {
     }
 
     // Method to execute login query and return User
-    public static boolean login(String username, String password) {
+    public static void login(String username, String password) {
         String query = "SELECT * FROM credentials WHERE username = ? AND password = ?";
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -51,16 +49,15 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     String email = resultSet.getString("email");
+                    // Instead of returning the User object directly, create it here
                     User user = new User(username, password, email);
                     LoggedInUser.getInstance().setUser(user);
-                    return true;
                 }
             }
 
         } catch (SQLException e) {
             e.printStackTrace(); // Log the exception properly in real scenarios
         }
-        return false;
     }
 
 
@@ -84,43 +81,14 @@ public class Database {
     }
 
     // Method to update user details
-    public static boolean updateUser(User user, String oldUsername) {
-        StringBuilder query = new StringBuilder("UPDATE credentials SET ");
-        boolean isPasswordChanged = user.getPassword() != null && !user.getPassword().isEmpty();
-        boolean isEmailChanged = user.getEmail() != null && !user.getEmail().isEmpty();
-        boolean isUsernameChanged = user.getUsername() != null && !user.getUsername().isEmpty();
-
-        if (isPasswordChanged) {
-            query.append("password = ?");
-        }
-        if (isEmailChanged) {
-            if (isPasswordChanged) {
-                query.append(", ");
-            }
-            query.append("email = ?");
-        }
-        if (isUsernameChanged) {
-            if (isPasswordChanged || isEmailChanged) {
-                query.append(", ");
-            }
-            query.append("username = ?");
-        }
-        query.append(" WHERE username = ?");
-
+    public static boolean updateUser(User user) {
+        String query = "UPDATE credentials SET password = ?, email = ? WHERE username = ?";
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query.toString())) {
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            int index = 1;
-            if (isPasswordChanged) {
-                preparedStatement.setString(index++, user.getPassword());
-            }
-            if (isEmailChanged) {
-                preparedStatement.setString(index++, user.getEmail());
-            }
-            if (isUsernameChanged) {
-                preparedStatement.setString(index++, user.getUsername());
-            }
-            preparedStatement.setString(index, oldUsername);
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getUsername());
 
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
@@ -147,7 +115,7 @@ public class Database {
             return false;
         }
     }
-//
+
     // Method to fetch a user by username
     public static User getUser(String username) {
         String query = "SELECT * FROM credentials WHERE username = ?";
@@ -168,40 +136,5 @@ public class Database {
             e.printStackTrace(); // Log the exception properly in real scenarios
         }
         return null;
-    }
-
-    public static void insertChatMessage(Chat chat) {
-        String insertSQL = "INSERT INTO chat (message, username, subject) VALUES (?, ?, ?)";
-
-        try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
-            pstmt.setString(1, chat.getHistory());
-            pstmt.setString(2, LoggedInUser.getInstance().getUser().getUsername());
-            pstmt.setString(3, chat.getName()); // Get the name of the chat
-            pstmt.executeUpdate();
-            System.out.println("Record inserted successfully");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static List<Chat> selectAllChatMessages(String username) {
-        String selectSQL = "SELECT id, message, username, subject FROM chat WHERE username = ?";
-        List<Chat> chats = new ArrayList<>();
-
-        try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
-            pstmt.setString(1, username);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    String message = rs.getString("message");
-                    String subject = rs.getString("subject");
-                    Chat chat = new Chat(subject, subject, true); // Set loadedFromDB to true
-                    chat.setHistory(message);
-                    chats.add(chat);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return chats;
     }
 }

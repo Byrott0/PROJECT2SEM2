@@ -1,66 +1,56 @@
 package org.example.project2sem2.Utils;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+
 public class Chat {
-    private String title;
-    private String history;
-    private String name;
-    private boolean loadedFromDB;
+    @FXML
+    private Button chatlistID;
+    @FXML
+    private Button imageFileChooserID;
+    @FXML
+    private Button textfieldEnterID;
 
-    public Chat(String title, String name) {
-        this.title = title;
-        this.name = name;
-        this.history = "";
-        this.loadedFromDB = false;
-    }
-
-    public Chat(String title, String name, boolean loadedFromDB) {
-        this.title = title;
-        this.name = name;
-        this.history = "";
-        this.loadedFromDB = loadedFromDB;
-    }
+    @FXML
+    private MenuItem accountBeheerID;
+    @FXML
+    private MenuItem adminID;
+    @FXML
+    private MenuItem uitloggenID;
 
     public Chat() {
-
+        // ...
     }
 
-    public String getHistory() {
-        return history;
+    @FXML
+    public void addChat(ActionEvent actionEvent) {
+        // ...
     }
 
-    public void setHistory(String history) {
-        this.history = history;
+    @FXML
+    public void openFileChooser(ActionEvent actionEvent) {
+        // ...
     }
 
-    public String getName() {
-        return name;
+    @FXML
+    public void checkText(ActionEvent actionEvent) {
+        // ...
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @FXML
+    public void goToAccountBeheerScherm(ActionEvent actionEvent) {
+        // ...
     }
 
-    public String getTitle() {
-        return title;
+    @FXML
+    public void goToAdminPage(ActionEvent actionEvent) {
+        // ...
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public boolean isLoadedFromDB() {
-        return loadedFromDB;
-    }
-
-    public void setLoadedFromDB(boolean loadedFromDB) {
-        this.loadedFromDB = loadedFromDB;
-    }
-
-    @Override
-    public String toString() {
-        return "Chat{" +
-                "name='" + name + '\'' +
-                ", history='" + history + '\'' +
-                '}';
+    @FXML
+    public void switchToLoginPage(ActionEvent actionEvent) {
+        // ...
     }
 }
