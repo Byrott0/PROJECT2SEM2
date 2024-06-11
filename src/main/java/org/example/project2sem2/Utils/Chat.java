@@ -1,4 +1,4 @@
-package org.example.project2sem2;
+package org.example.project2sem2.Utils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

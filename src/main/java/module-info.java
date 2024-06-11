@@ -5,4 +5,8 @@ module org.example.project2sem2 {
 
     opens org.example.project2sem2 to javafx.fxml;
     exports org.example.project2sem2;
+    exports org.example.project2sem2.Controller;
+    opens org.example.project2sem2.Controller to javafx.fxml;
+    exports org.example.project2sem2.Utils;
+    opens org.example.project2sem2.Utils to javafx.fxml;
 }
