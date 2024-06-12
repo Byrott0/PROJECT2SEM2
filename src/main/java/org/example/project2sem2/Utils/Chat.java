@@ -49,7 +49,6 @@ public class Chat {
         return title;
     }
 
-
     public void BeantwoordVraag(String question) {
 
     }
