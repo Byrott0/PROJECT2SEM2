@@ -13,18 +13,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parentID" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Controller.ChatBoxController">
+<AnchorPane fx:id="parentID" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7d9496;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Controller.ChatBoxController">
    <children>
       <Label fx:id="NameID" layoutX="93.0" layoutY="10.0" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
 
-      <ListView fx:id="listviewID" prefWidth="106.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="71.0" />
+      <ListView fx:id="listviewID" prefWidth="106.0" style="-fx-background-color: #dae7ed;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="71.0" />
 
       <Button fx:id="chatlistID" onAction="#addChat" prefWidth="106.0" text="Voeg Chat" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="45.0" />
 
-      <TextField fx:id="textfield" prefHeight="34.0" prefWidth="650.0" promptText="Stel uw vraag" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0">
+      <TextField fx:id="textfield" layoutX="120.0" layoutY="547.0" prefHeight="34.0" prefWidth="650.0" promptText="Stel uw vraag" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
@@ -33,7 +33,7 @@
 
       <TextArea fx:id="textAreaID" editable="false" promptText="Hier komt uw gesprek te staan." AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="69.0">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="14.0" />
          </font></TextArea>
 
       <MenuButton fx:id="instellingenID" layoutX="636.0" layoutY="16.0" minWidth="80.0" prefHeight="38.0" prefWidth="134.0" text="Instellingen" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="16.0">
