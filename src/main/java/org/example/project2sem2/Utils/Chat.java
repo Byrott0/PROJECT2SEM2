@@ -6,6 +6,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 
 public class Chat {
+    private String name;
+
+    public Chat() {
+        this.name = "New Chat";
+    }
+
+    public Chat(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
     @FXML
     private Button chatlistID;
     @FXML
@@ -20,9 +34,7 @@ public class Chat {
     @FXML
     private MenuItem uitloggenID;
 
-    public Chat() {
-        // ...
-    }
+
 
     @FXML
     public void addChat(ActionEvent actionEvent) {

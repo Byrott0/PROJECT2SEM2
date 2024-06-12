@@ -28,8 +28,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="imageFileChooserID" layoutX="765.0" layoutY="551.0" minHeight="20.0" minWidth="20.0" onAction="#openFileChooser" styleClass="fileButton" text="+" />
-      <TextField fx:id="textfield" layoutX="136.0" layoutY="541.0" prefHeight="45.0" prefWidth="615.0" promptText="Stel uw vraag.">
+      <TextField fx:id="textfield" layoutX="136.0" layoutY="541.0" onAction="#TypText" prefHeight="46.0" prefWidth="632.0" promptText="Stel uw vraag.">
          <styleClass>
             <String fx:value="secondary-color" />
             <String fx:value="secondary-border-color" />
@@ -39,14 +38,14 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </TextField>
-      <Button fx:id="textfieldEnterID" layoutX="714.0" layoutY="551.0" minHeight="15.0" minWidth="15.0" onAction="#checkText" styleClass="textfieldEnterID" text="&gt;" />
+      <Button fx:id="textfieldEnterID" layoutX="731.0" layoutY="551.0" minHeight="15.0" minWidth="15.0" onAction="#VerstuurText" styleClass="textfieldEnterID" text="&gt;" />
       <ScrollBar fx:id="scrollbarID" layoutX="770.0" layoutY="86.0" orientation="VERTICAL" prefHeight="447.0" prefWidth="14.0" />
       <TextArea fx:id="textAreaID" editable="false" layoutX="136.0" layoutY="93.0" prefHeight="440.0" prefWidth="632.0" promptText="Hier komt uw gesprek te staan." styleClass="text-fill2">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </TextArea>
-      <TextField layoutX="136.0" layoutY="60.0" promptText="Onderwerp:">
+      <TextField fx:id="OnderwerpNaam" layoutX="136.0" layoutY="60.0" onAction="#WeergeefOnderwerp" promptText="Onderwerp:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
