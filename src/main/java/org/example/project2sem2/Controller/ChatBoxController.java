@@ -164,7 +164,7 @@ public class ChatBoxController {
 
 
     @FXML
-    public void switchToLoginPage(ActionEvent event) throws IOException {
+    public void LogOutfunction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conformatie Uitloggen");
         alert.setHeaderText(null);
@@ -194,6 +194,5 @@ public class ChatBoxController {
         }
     }
 
-    public void LogOutfunction(ActionEvent event) {
-    }
+
 }
