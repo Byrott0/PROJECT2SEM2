@@ -62,9 +62,9 @@ public class SignUpController {
             }
         } else {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Sign Up Error");
+            alert.setTitle("Aanmeld  Fout");
             alert.setHeaderText(null);
-            alert.setContentText("Could not sign up. Please try again.");
+            alert.setContentText("Kon niet aanmelden, probeer opnieuw");
             alert.showAndWait();
         }
     }

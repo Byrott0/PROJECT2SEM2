@@ -37,9 +37,9 @@ public class LoginController {
             SceneSwitcher.switchScene(event, "chat-box.fxml");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Error");
+            alert.setTitle("Login Fout");
             alert.setHeaderText(null);
-            alert.setContentText("Could not Log in. Please try again.");
+            alert.setContentText("kon niet inloggen, probeer opnieuw");
             alert.showAndWait();
         }
     }
