@@ -82,6 +82,7 @@ public class ChatBoxController {
 
                     textAreaID.setText(chats.get(chatIndex).getHistory());
                 });
+        //test
     }
 
     private void updateUI() {
