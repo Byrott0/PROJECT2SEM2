@@ -3,18 +3,10 @@ package org.example.project2sem2.Controller;
 import javafx.event.ActionEvent;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.KeyCode;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import org.example.project2sem2.Utils.Chat;
-
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,8 +21,7 @@ public class ChatBoxController {
     @FXML
     private Button chatlistID;
     @FXML
-    private Label welkomID;
-    @FXML
+
     private MenuButton instellingenID;
     @FXML
     private ListView<String> listviewID;
@@ -56,7 +47,7 @@ public class ChatBoxController {
     public void initialize() {
         updateUI();
 
-        NameID.setText("User Name"); // Placeholder for Global.loggedInUser.getName()
+
 
         if (false) { // Placeholder for Global.loggedInUser.getIsAdmin() == 1
             adminID.setVisible(true);
@@ -87,14 +78,11 @@ public class ChatBoxController {
     private void updateUI() {
         // Placeholder for switch (Global.SelectedLanguage) { ... }
 
-        welkomID.setText("Welcome"); // Placeholder for Global.GetSentence(20)
+
         chatlistID.setText("Chat List"); // Placeholder for Global.GetSentence(21)
         textAreaID.setPromptText("Here is your conversation"); // Placeholder for Global.GetSentence(23)
         textfield.setPromptText("Ask a question"); // Placeholder for Global.GetSentence(24)
         instellingenID.setText("Settings"); // Placeholder for Global.GetSentence(25)
-        accountBeheerID.setText("My Account"); // Placeholder for Global.GetSentence(26)
-        faqsID.setText("FAQS"); // Placeholder for Global.GetSentence(27)
-        adminID.setText("Admin"); // Placeholder for Global.GetSentence(28)
         uitloggenID.setText("Logout"); // Placeholder for Global.GetSentence(29)
     }
 

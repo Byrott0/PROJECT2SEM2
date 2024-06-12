@@ -1,45 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import java.lang.String?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<AnchorPane fx:id="parentID" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Controller.ChatBoxController">
+<AnchorPane fx:id="parentID" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Controller.ChatBoxController">
    <children>
+      <Label fx:id="NameID" layoutX="93.0" layoutY="10.0" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
 
-      <Label fx:id="welkomID" text="Welkom," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0"/>
-      <Label fx:id="NameID" text="gebruikersnaam" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="5.0"/>
+      <ListView fx:id="listviewID" prefWidth="106.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="71.0" />
 
-      <ListView fx:id="listviewID" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="71.0"
-                AnchorPane.bottomAnchor="60.0" prefWidth="106.0"/>
+      <Button fx:id="chatlistID" onAction="#addChat" prefWidth="106.0" text="Voeg Chat" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="45.0" />
 
-      <Button fx:id="chatlistID" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="45.0" prefWidth="106.0"
-              text="+ New Chat" onAction="#addChat"/>
+      <TextField fx:id="textfield" prefHeight="34.0" prefWidth="650.0" promptText="Stel uw vraag." AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0" />
 
-      <TextField fx:id="textfield" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="50.0"
-                 AnchorPane.bottomAnchor="15.0" prefHeight="26.0" promptText="Stel uw vraag."/>
+      <Button fx:id="textfieldEnterID" layoutX="743.0" layoutY="555.0" minHeight="15.0" minWidth="15.0" onAction="#checkText" prefHeight="26.0" prefWidth="27.0" text="&gt;" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="34.0" />
 
-      <Button fx:id="textfieldEnterID" AnchorPane.rightAnchor="60.0" AnchorPane.bottomAnchor="21.0" minWidth="15.0" minHeight="15.0"
-              text=">" onAction="#checkText"/>
+      <TextArea fx:id="textAreaID" editable="false" promptText="Hier komt uw gesprek te staan." AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="69.0" />
 
-      <TextArea fx:id="textAreaID" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0"
-                AnchorPane.topAnchor="69.0" AnchorPane.bottomAnchor="60.0" promptText="Hier komt uw gesprek te staan."
-                editable="false" />
-
-      <MenuButton fx:id="instellingenID" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"
-                  minWidth="80.0" prefHeight="11.0" text="Instellingen">
+      <MenuButton fx:id="instellingenID" layoutX="672.0" layoutY="11.2" minWidth="80.0" prefHeight="38.0" prefWidth="134.0" text="Instellingen" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0">
          <items>
-            <MenuItem fx:id="accountBeheerID" mnemonicParsing="false" text="Mijn account" onAction="#goToAccountBeheerScherm"/>
-            <MenuItem fx:id="adminID" mnemonicParsing="false" text="Admin" onAction="#goToAdminPage"/>
-            <MenuItem fx:id="faqsID" mnemonicParsing="false" text="FAQS"/>
-            <MenuItem fx:id="uitloggenID" mnemonicParsing="false" text="Uitloggen" onAction="#switchToLoginPage"/>
+            <MenuItem fx:id="adminID" mnemonicParsing="false" onAction="#goToAdminPage" text="Admin" />
+            <MenuItem fx:id="uitloggenID" mnemonicParsing="false" onAction="#switchToLoginPage" text="Taal keuze" />
          </items>
+         <font>
+            <Font size="16.0" />
+         </font>
       </MenuButton>
    </children>
 </AnchorPane>
