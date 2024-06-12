@@ -166,9 +166,9 @@ public class ChatBoxController {
     @FXML
     public void switchToLoginPage(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
+        alert.setTitle("Conformatie Uitloggen");
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to log out?");
+        alert.setContentText("Weet u zeker dat u wilt uitloggen?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
