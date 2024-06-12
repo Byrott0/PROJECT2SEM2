@@ -8,7 +8,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class FileProcessor {
+
+    public String loadDataFromFile(String filePath) {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + filePath);
+            e.printStackTrace();
+        }
+        return content.toString().trim();
+    }
 }
 
 
