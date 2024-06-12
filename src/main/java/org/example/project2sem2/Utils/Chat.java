@@ -20,8 +20,33 @@ public class Chat {
     @FXML
     private MenuItem uitloggenID;
 
+    private String title;
+    private String history;
+
+    public Chat(String title) {
+        this.title = title;
+        this.history = "";
+    }
+
     public Chat() {
-        // ...
+        
+    }
+
+    public String getHistory() {
+        return history;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 
     @FXML
@@ -52,5 +77,8 @@ public class Chat {
     @FXML
     public void switchToLoginPage(ActionEvent actionEvent) {
         // ...
+    }
+
+    public void answerQuestion(String question) {
     }
 }

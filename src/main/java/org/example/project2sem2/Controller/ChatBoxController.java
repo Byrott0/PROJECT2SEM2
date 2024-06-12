@@ -82,7 +82,6 @@ public class ChatBoxController {
 
                     textAreaID.setText(chats.get(chatIndex).getHistory());
                 });
-        //test
     }
 
     private void updateUI() {
@@ -123,13 +122,21 @@ public class ChatBoxController {
 
     @FXML
     public void goToAccountBeheerScherm(ActionEvent event) throws IOException {
-
+        // Placeholder for FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accountBeheerScherm.fxml"));
+        // Placeholder for Parent root = fxmlLoader.load();
+        // Placeholder for Stage currentStage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+        // Placeholder for Scene scene = currentStage.getScene();
+        // Placeholder for scene.setRoot(root);
     }
 
     @FXML
     public void goToAdminPage() throws IOException {
         if (false) { // Placeholder for Global.loggedInUser.getIsAdmin() == 1
-
+            // Placeholder for FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin-view.fxml"));
+            // Placeholder for Parent root = fxmlLoader.load();
+            // Placeholder for Stage adminStage = new Stage();
+            // Placeholder for adminStage.setScene(new Scene(root));
+            // Placeholder for adminStage.show();
         }
     }
 
@@ -140,6 +147,10 @@ public class ChatBoxController {
 
     @FXML
     public void switchToLoginPage(ActionEvent event) throws IOException {
-
+        // Placeholder for FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+        // Placeholder for Parent root = fxmlLoader.load();
+        // Placeholder for Stage currentStage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+        // Placeholder for Scene scene = currentStage.getScene();
+        // Placeholder for scene.setRoot(root);
     }
 }
