@@ -75,6 +75,30 @@ public class ChatBoxController {
                 });
     }
 
+    @FXML
+    public void setDutch() {
+        // Update the texts in the chatbox to Dutch
+
+        chatlistID.setText("Chatlijst");
+        textAreaID.setPromptText("Hier komt uw gesprek te staan.");
+        textfield.setPromptText("Stel uw vraag.");
+        instellingenID.setText("Instellingen");
+        uitloggenID.setText("Uitloggen");
+        // ... update the rest of the texts ...
+    }
+
+    @FXML
+    public void setEnglish() {
+        // Update the texts in the chatbox to English
+
+        chatlistID.setText("Chat List");
+        textAreaID.setPromptText("Here is your conversation");
+        textfield.setPromptText("Ask a question");
+        instellingenID.setText("Settings");
+        uitloggenID.setText("Logout");
+        // ... update the rest of the texts ...
+    }
+
     private void updateUI() {
         // Placeholder for switch (Global.SelectedLanguage) { ... }
 
