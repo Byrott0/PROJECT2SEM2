@@ -193,4 +193,7 @@ public class ChatBoxController {
             alert.close();
         }
     }
+
+    public void LogOutfunction(ActionEvent event) {
+    }
 }
