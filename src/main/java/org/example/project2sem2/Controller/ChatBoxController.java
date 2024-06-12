@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import org.example.project2sem2.Utils.LoggedInUser;
+
 
 public class ChatBoxController {
 
@@ -46,7 +52,6 @@ public class ChatBoxController {
 
     public void initialize() {
         updateUI();
-
 
 
         if (false) { // Placeholder for Global.loggedInUser.getIsAdmin() == 1
@@ -157,12 +162,35 @@ public class ChatBoxController {
         textAreaID.appendText("\n");
     }
 
+
     @FXML
     public void switchToLoginPage(ActionEvent event) throws IOException {
-        // Placeholder for FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-        // Placeholder for Parent root = fxmlLoader.load();
-        // Placeholder for Stage currentStage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
-        // Placeholder for Scene scene = currentStage.getScene();
-        // Placeholder for scene.setRoot(root);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to log out?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            // Clear the chat history
+            chats.clear();
+            chatList.clear();
+            textAreaID.clear();
+
+            // Load the login screen FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/project2sem2/login.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Get the current stage and set the new root
+            Stage currentStage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            Scene scene = currentStage.getScene();
+            scene.setRoot(root);
+
+            // Clear all user data
+            LoggedInUser.getInstance().setUser(null);
+        } else {
+            // User chose CANCEL or closed the dialog
+            alert.close();
+        }
     }
 }

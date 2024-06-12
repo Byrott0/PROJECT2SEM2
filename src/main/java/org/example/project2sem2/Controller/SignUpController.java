@@ -49,23 +49,31 @@ public class SignUpController {
         String password = passwordField.getText();
         String email = emailField.getText();
 
-        User user = new User(username, password, email);
-        boolean isSignedUp = Database.signup(user);
-
-        if (isSignedUp) {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/org/example/project2sem2/login.fxml"));
-                Stage stage = (Stage) MeldAanKnop.getScene().getWindow();
-                stage.setScene(new Scene(root));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
+        if (Database.getUser(username) != null) {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Aanmeld  Fout");
+            alert.setTitle("Aanmeld Fout");
             alert.setHeaderText(null);
-            alert.setContentText("Kon niet aanmelden, probeer opnieuw");
+            alert.setContentText("Gebruikersnaam bestaat al, kies een andere");
             alert.showAndWait();
+        } else {
+            User user = new User(username, password, email);
+            boolean isSignedUp = Database.signup(user);
+
+            if (isSignedUp) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/org/example/project2sem2/login.fxml"));
+                    Stage stage = (Stage) MeldAanKnop.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Aanmeld Fout");
+                alert.setHeaderText(null);
+                alert.setContentText("Kon niet aanmelden, probeer opnieuw");
+                alert.showAndWait();
+            }
         }
     }
 }
