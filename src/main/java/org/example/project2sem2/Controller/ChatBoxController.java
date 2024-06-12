@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.KeyCode;
 import org.example.project2sem2.Utils.Chat;
 import java.io.IOException;
@@ -22,27 +21,22 @@ public class ChatBoxController {
 
     @FXML
     private Label NameID;
-    @FXML
-    private MenuItem adminID;
+
     @FXML
     private Button chatlistID;
-    @FXML
 
+    @FXML
     private MenuButton instellingenID;
+
     @FXML
     private ListView<String> listviewID;
-    @FXML
-    private AnchorPane parentID;
+
     @FXML
     private TextArea textAreaID;
+
     @FXML
     private TextField textfield;
-    @FXML
-    private Button textfieldEnterID;
-    @FXML
-    private MenuItem accountBeheerID;
-    @FXML
-    private MenuItem faqsID;
+
     @FXML
     private MenuItem uitloggenID;
 
@@ -52,13 +46,6 @@ public class ChatBoxController {
 
     public void initialize() {
         updateUI();
-
-
-        if (false) { // Placeholder for Global.loggedInUser.getIsAdmin() == 1
-            adminID.setVisible(true);
-        } else {
-            adminID.setVisible(false);
-        }
 
         textfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -82,43 +69,40 @@ public class ChatBoxController {
 
     @FXML
     public void setDutch() {
-        // Update the texts in the chatbox to Dutch
+
 
         chatlistID.setText("Chatlijst");
         textAreaID.setPromptText("Hier komt uw gesprek te staan.");
         textfield.setPromptText("Stel uw vraag.");
         instellingenID.setText("Instellingen");
         uitloggenID.setText("Uitloggen");
-        // ... update the rest of the texts ...
+
     }
 
     @FXML
     public void setEnglish() {
-        // Update the texts in the chatbox to English
 
         chatlistID.setText("Chat List");
         textAreaID.setPromptText("Here is your conversation");
         textfield.setPromptText("Ask a question");
         instellingenID.setText("Settings");
         uitloggenID.setText("Logout");
-        // ... update the rest of the texts ...
+
     }
 
     private void updateUI() {
-        // Placeholder for switch (Global.SelectedLanguage) { ... }
 
-
-        chatlistID.setText("Chat List"); // Placeholder for Global.GetSentence(21)
-        textAreaID.setPromptText("Here is your conversation"); // Placeholder for Global.GetSentence(23)
-        textfield.setPromptText("Ask a question"); // Placeholder for Global.GetSentence(24)
-        instellingenID.setText("Settings"); // Placeholder for Global.GetSentence(25)
-        uitloggenID.setText("Logout"); // Placeholder for Global.GetSentence(29)
+        chatlistID.setText("Chat List");
+        textAreaID.setPromptText("Here is your conversation");
+        textfield.setPromptText("Ask a question");
+        instellingenID.setText("Settings");
+        uitloggenID.setText("Logout");
     }
 
     public void addChat() {
         chats.get(chatIndex).setHistory(textAreaID.getText());
         textAreaID.setText(null);
-        chatList.add("New Chat"); // Placeholder for Global.GetSentence(22)
+        chatList.add("New Chat");
         Chat chat = new Chat("New Chat " + (chatList.size() - 1));
         chats.add(chat);
         chatIndex = chats.size() - 1;
@@ -132,30 +116,11 @@ public class ChatBoxController {
             chatList.set(chatIndex, chat.toString());
         }
         changeTextField("Q:", textfield.getText());
-        changeTextField("A:", "Response"); // Placeholder for ConversationDB.getText(textfield.getText())
+        changeTextField("A:", "Response");
         textfield.setText(null);
         chat.setHistory(textAreaID.getText());
     }
 
-    @FXML
-    public void goToAccountBeheerScherm(ActionEvent event) throws IOException {
-        // Placeholder for FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accountBeheerScherm.fxml"));
-        // Placeholder for Parent root = fxmlLoader.load();
-        // Placeholder for Stage currentStage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
-        // Placeholder for Scene scene = currentStage.getScene();
-        // Placeholder for scene.setRoot(root);
-    }
-
-    @FXML
-    public void goToAdminPage() throws IOException {
-        if (false) { // Placeholder for Global.loggedInUser.getIsAdmin() == 1
-            // Placeholder for FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin-view.fxml"));
-            // Placeholder for Parent root = fxmlLoader.load();
-            // Placeholder for Stage adminStage = new Stage();
-            // Placeholder for adminStage.setScene(new Scene(root));
-            // Placeholder for adminStage.show();
-        }
-    }
 
     public void changeTextField(String sender, String text) {
         textAreaID.appendText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss ")) + sender + " " + text + "\n");
@@ -172,27 +137,24 @@ public class ChatBoxController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // Clear the chat history
             chats.clear();
             chatList.clear();
             textAreaID.clear();
 
-            // Load the login screen FXML file
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/project2sem2/login.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Get the current stage and set the new root
+
             Stage currentStage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             Scene scene = currentStage.getScene();
             scene.setRoot(root);
 
-            // Clear all user data
+
             LoggedInUser.getInstance().setUser(null);
         } else {
-            // User chose CANCEL or closed the dialog
+
             alert.close();
         }
     }
-
-
 }

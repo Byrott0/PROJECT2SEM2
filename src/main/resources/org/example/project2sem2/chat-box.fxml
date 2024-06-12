@@ -38,7 +38,7 @@
 
       <MenuButton fx:id="instellingenID" layoutX="636.0" layoutY="16.0" minWidth="80.0" prefHeight="38.0" prefWidth="134.0" text="Instellingen" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="16.0">
          <items>
-            <MenuItem fx:id="adminID" mnemonicParsing="false" onAction="#goToAdminPage" text="Admin" />
+
             <Menu fx:id="languageMenuID" mnemonicParsing="false" text="Taal">
                <items>
                   <MenuItem fx:id="dutchID" mnemonicParsing="false" onAction="#setDutch" text="Nederlands" />

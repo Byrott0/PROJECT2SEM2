@@ -14,11 +14,6 @@ import org.example.project2sem2.Utils.SceneSwitcher;
 
 public class LoginController {
 
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button naarSignUp;
 
     @FXML
     private PasswordField passwordField;
