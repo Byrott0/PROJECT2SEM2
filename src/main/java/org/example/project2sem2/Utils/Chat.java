@@ -7,6 +7,7 @@ import javafx.scene.control.MenuItem;
 
 public class Chat {
     private String name;
+    private String history = "";
 
     public Chat() {
         this.name = "New Chat";
@@ -20,6 +21,19 @@ public class Chat {
     public String toString() {
         return name;
     }
+
+    public String getHistory() {
+        return history;
+    }
+
+    public void setHistory(String text) {
+        this.history = text;
+    }
+
+    public void setTitle(String onderwerp) {
+        this.name = onderwerp;
+    }
+
     @FXML
     private Button chatlistID;
     @FXML
@@ -33,8 +47,6 @@ public class Chat {
     private MenuItem adminID;
     @FXML
     private MenuItem uitloggenID;
-
-
 
     @FXML
     public void addChat(ActionEvent actionEvent) {
