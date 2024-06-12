@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.project2sem2.Utils.Chatbot;
+import org.example.project2sem2.Utils.SearchEngine;
 import org.example.project2sem2.Utils.LoggedInUser;
 
 import java.io.IOException;
@@ -41,6 +42,9 @@ public class ChatBoxController {
     private TextField textfield;
 
     @FXML
+    private Button textfieldEnterID;
+
+    @FXML
     private MenuItem uitloggenID;
 
     @FXML
@@ -50,14 +54,25 @@ public class ChatBoxController {
     private ObservableList<String> chatList;
     private int chatIndex = 0;
 
+    private Chatbot chatbot;
+
+    public void checkText() {
+        chatbot.checkText(); // Roep de checkText methode van de Chatbot instantie aan
+    }
+
     public void initialize() {
         // Stel de standaardtaal in op Nederlands
         setDutch();
 
-        // Stel een handler in voor het indrukken van de Enter-toets in het tekstveld
+        textfieldEnterID.setOnAction(event -> {
+            chatbot.checkText();
+            event.consume();
+        });
+
+        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, textfield);
         textfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                Chatbot.checkText();
+                chatbot.checkText();
                 event.consume();
             }
         });
@@ -111,22 +126,6 @@ public class ChatBoxController {
         chatIndex = chats.size() - 1;
     }
 
-//public void checkText() {
-//   Chat chat = chats.get(chatIndex);
-//   if (textfield.getPromptText().equals("Stel uw vraag.") || textfield.getPromptText().equals("Ask a question")) {
-//       chat.setTitle(textfield.getText());
-//       chatList.set(chatIndex, chat.toString());
-//   }
-//   changeTextField("Q:", textfield.getText());
-//   changeTextField("A:", "Response");
-//   textfield.setText(null);
-//   chat.setHistory(textAreaID.getText());
-//
-//
-//ublic void changeTextField(String sender, String text) {
-//   textAreaID.appendText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss ")) + sender + " " + text + "\n");
-//   textAreaID.appendText("\n");
-//
 
     @FXML
     public void LogOutfunction(ActionEvent event) throws IOException {

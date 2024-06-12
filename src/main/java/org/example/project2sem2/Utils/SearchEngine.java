@@ -32,4 +32,21 @@ public class SearchEngine {
         // Implement the method...
         return true;
     }
+
+    public String findAnswer(String question) {
+        String key = findKey(question);
+        if (key != null) {
+            // Implement your logic to find the answer based on the key
+            return "key " + key;
+        } else {
+            return "Response";
+        }
+    }
+
+    public String getResponse(String input) {
+        String key = findKey(input);
+        String response = findAnswer(key);
+        return response;
+    }
+
 }
