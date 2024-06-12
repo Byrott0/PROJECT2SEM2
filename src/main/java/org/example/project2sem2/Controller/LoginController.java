@@ -1,5 +1,6 @@
 package org.example.project2sem2.Controller;
 
+import javafx.scene.control.Alert;
 import org.example.project2sem2.Model.User;
 import org.example.project2sem2.Utils.Database;
 
@@ -30,13 +31,16 @@ public class LoginController {
         String password = passwordField.getText();
         String username = usernameField.getText();
 
-        Database.login(username, password);
+        boolean loginSuccessful = Database.login(username, password);
 
-        // If login is successful, create the singleton user instance
-        if (LoggedInUser.getInstance() != null) {
+        if (loginSuccessful) {
             SceneSwitcher.switchScene(event, "chat-box.fxml");
         } else {
-            // Handle unsuccessful login, display an error message, etc.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Could not Log in. Please try again.");
+            alert.showAndWait();
         }
     }
 
