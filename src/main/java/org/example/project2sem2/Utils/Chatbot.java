@@ -13,13 +13,13 @@ public class Chatbot {
         System.out.println("Stel een vraag (type 'exit' om te stoppen):");
 
         while (true) {
-            String question = scanner.nextLine().trim();
-            if (question.equalsIgnoreCase("exit")) {
+            String vraag = scanner.nextLine().trim();
+            if (vraag.equalsIgnoreCase("exit")) {
                 System.out.println("Exiting...");
                 break;
             }
 
-            chat.answerQuestion(question);
+            chat.BeantwoordVraag(vraag);
         }
 
         scanner.close();

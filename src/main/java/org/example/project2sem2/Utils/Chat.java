@@ -49,36 +49,8 @@ public class Chat {
         return title;
     }
 
-    @FXML
-    public void addChat(ActionEvent actionEvent) {
-        // ...
-    }
 
-    @FXML
-    public void openFileChooser(ActionEvent actionEvent) {
-        // ...
-    }
+    public void BeantwoordVraag(String question) {
 
-    @FXML
-    public void checkText(ActionEvent actionEvent) {
-        // ...
-    }
-
-    @FXML
-    public void goToAccountBeheerScherm(ActionEvent actionEvent) {
-        // ...
-    }
-
-    @FXML
-    public void goToAdminPage(ActionEvent actionEvent) {
-        // ...
-    }
-
-    @FXML
-    public void switchToLoginPage(ActionEvent actionEvent) {
-        // ...
-    }
-
-    public void answerQuestion(String question) {
     }
 }
