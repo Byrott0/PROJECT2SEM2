@@ -1,43 +1,35 @@
 package org.example.project2sem2.Utils;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.HashSet;
 
 public class SearchEngine {
-    private Map<List<String>, String> dataMap;
-    private Map<String, List<String>> keywordToKeyMap;
+    private List<String> javaKeywords;
+    private List<String> pythonKeywords;
+    private List<String> languageKeywords;
+    private List<String> socialPlatformApplicationKeywords;
+    private List<String> financialSystemKeywords;
+    private List<String> domainModelKeywords;
 
-    public SearchEngine(Map<List<String>, String> dataMap, Map<String, List<String>> keywordToKeyMap) {
-        this.dataMap = dataMap;
-        this.keywordToKeyMap = keywordToKeyMap;
+    public String findKey(String question) {
+        String key = null;
+        if (containsKeyword(question, javaKeywords)) {
+            key = "java";
+        } else if (containsKeyword(question, pythonKeywords)) {
+            key = "python";
+        } else if (containsKeyword(question, languageKeywords)) {
+            key = "language";
+        } else if (containsKeyword(question, socialPlatformApplicationKeywords)) {
+            key = "social-platform-application";
+        } else if (containsKeyword(question, financialSystemKeywords)) {
+            key = "financial-system";
+        } else if (containsKeyword(question, domainModelKeywords)) {
+            key = "domain-model";
+        }
+        return key;
     }
 
-    public String findAnswer(String question) {
-        for (Map.Entry<List<String>, String> entry : dataMap.entrySet()) {
-            if (containsKeywords(question.toLowerCase(), entry.getKey())) {
-                return entry.getValue();
-            }
-        }
-        return null;
-    }
-
-    public void suggestKeywords(String question) {
-        Set<String> suggestions = new HashSet<>();
-        for (String key : keywordToKeyMap.keySet()) {
-            if (question.contains(key)) {
-                suggestions.addAll(keywordToKeyMap.get(key));
-            }
-        }
-        if (!suggestions.isEmpty()) {
-            System.out.println("Bedoelde u iets over: " + String.join(", ", suggestions) + "?");
-        } else {
-            System.out.println("Geen suggesties gevonden.");
-        }
-    }
-
-    private boolean containsKeywords(String question, List<String> keywords) {
-        return keywords.stream().anyMatch(question::contains);
+    private boolean containsKeyword(String question, List<String> keywords) {
+        // Implement the method...
+        return true;
     }
 }

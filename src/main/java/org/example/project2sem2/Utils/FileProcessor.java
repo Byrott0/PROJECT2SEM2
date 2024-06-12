@@ -63,25 +63,8 @@ public class FileProcessor {
 //                break;
 //            }
 //
-//            String key = null;
-//            if (containsKeyword(question, javaKeywords)) {
-//                key = "java";
-//            } else if (containsKeyword(question, pythonKeywords)) {
-//                key = "python";
-//            }
-//            else if (containsKeyword(question, Languageskeywords)) {
-//                key = "language";
-//            }
-//            else if (containsKeyword(question, socialPlatformApplicationKeywords)) {
-//                key = "social-platform-application";
-//            }
-//            else if (containsKeyword(question, financialSystemKeywords)) {
-//                key = "financial-system";
-//            }
-//            else if (containsKeyword(question, domainmodelKeywords)) {
-//                key = "domain-model";
-//            }
-//
+
+
 //
 //            if (key != null) {
 //                String value = dataMap.get(key);
