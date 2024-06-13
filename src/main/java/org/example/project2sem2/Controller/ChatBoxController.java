@@ -23,6 +23,12 @@ import java.util.Optional;
 
 public class ChatBoxController {
 
+    private User user;
+
+    public ChatBoxController(User user) {
+        this.user = user;
+    }
+
     @FXML
     private Label NameID;
 
@@ -81,6 +87,8 @@ public class ChatBoxController {
                 event.consume();
             }
         });
+
+        this.searchEngine = new SearchEngine();
 
         chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Geef de typetextID door aan de Chatbot klasse
         typetextID.setOnKeyPressed(event -> {
