@@ -16,7 +16,6 @@ public class SearchEngine {
 //test
 
     public SearchEngine() {
-        // Initialiseer de lijsten...
         javaKeywords = new ArrayList<>();
         pythonKeywords = new ArrayList<>();
         languageKeywords = new ArrayList<>();

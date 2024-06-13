@@ -30,7 +30,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextArea fx:id="textAreaID" editable="false" promptText="Hier komt uw gesprek te staan." AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="69.0">
+      <TextArea fx:id="textAreaID" editable="false" promptText="Hier komt uw gesprek te staan." wrapText="true" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="69.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
