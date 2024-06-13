@@ -53,6 +53,10 @@ public class SearchEngine {
     }
 
     public String getResponse(String input) {
+        String key = findKey(input);
+        if (key != null) {
+            return keywordResponses.get(key);
+        }
         return findAnswer(input);
     }
 }
