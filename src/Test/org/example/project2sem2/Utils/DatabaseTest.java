@@ -62,7 +62,7 @@ class DatabaseTest {
     @Order(5)
     void deleteUser() {
         boolean result = Database.deleteUser("testuser");
-        asse rtTrue(result, "deleteUser should return true for a successful deletion.");
+        assertTrue(result, "deleteUser should return true for a successful deletion.");
 
         User user = Database.getUser("testuser");
         assertNull(user, "getUser should return null for a deleted user.");
