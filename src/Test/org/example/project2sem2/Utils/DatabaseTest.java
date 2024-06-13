@@ -49,7 +49,7 @@ class DatabaseTest {
     @Order(4)
     void updateUser() {
         User updatedUser = new User("testuser", "newpassword", "newemail@example.com");
-        boolean result = Database.updateUser(updatedUser);
+        boolean result = Database.updateUser(updatedUser,"testuser");
         assertTrue(result, "updateUser should return true for a successful update.");
 
         User user = Database.getUser("testuser");
