@@ -21,12 +21,6 @@ import java.util.Optional;
 
 public class ChatBoxController {
 
-    private User user;
-
-    public ChatBoxController(User user) {
-        this.user = user;
-    }
-
     @FXML
     private Label NameID;
 
@@ -54,12 +48,21 @@ public class ChatBoxController {
     @FXML
     private Label NameID1;
 
+    @FXML
+    private Label onderwerpID;
+
     private ArrayList<Chat> chats = new ArrayList<>();
     private ObservableList<String> chatList;
     private int chatIndex = 0;
 
     private Chatbot chatbot;
     private SearchEngine searchEngine;
+
+    private User loggedInUser; // Add this line
+
+    public ChatBoxController(User loggedInUser) { // Add this constructor
+        this.loggedInUser = loggedInUser;
+    }
 
     public void checkText() {
         if (!chats.isEmpty()) {
@@ -70,9 +73,11 @@ public class ChatBoxController {
             textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());
+
+            // Update de onderwerpID label met de vraag van de gebruiker
+            onderwerpID.setText("Onderwerp: " + userQuestion);
         }
     }
-
 
     public void initialize() {
         // Stel de standaardtaal in op Nederlands
@@ -123,6 +128,7 @@ public class ChatBoxController {
         typetextID.setPromptText("Stel uw vraag.");
         instellingenID.setText("Instellingen");
         uitloggenID.setText("Uitloggen");
+        onderwerpID.setText("Onderwerp: ");
         setLoggedInUserText("Ingelogd als: ");
     }
 
@@ -133,6 +139,7 @@ public class ChatBoxController {
         typetextID.setPromptText("Ask a question");
         instellingenID.setText("Settings");
         uitloggenID.setText("Logout");
+        onderwerpID.setText("Subject:");
         setLoggedInUserText("Logged in as: ");
     }
 

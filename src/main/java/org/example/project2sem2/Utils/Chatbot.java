@@ -30,20 +30,7 @@ public class Chatbot {
         this.typetextID = typetextID;
     }
 
-
     public void processText() {
-        checkText();
-    }
-
-    private void checkText() {
-        if (!chats.isEmpty()) {
-            Chat chat = chats.get(chatIndex);
-            String userQuestion = typetextID.getText();
-            textAreaID.appendText("\nQ: " + userQuestion); // Voeg de vraag toe aan de TextArea
-            String botAnswer = searchEngine.getResponse(userQuestion); // Gebruik de getResponse methode
-            textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
-            typetextID.setText("");
-            chat.setHistory(textAreaID.getText());
-        }
+        chatBoxController.checkText();
     }
 }

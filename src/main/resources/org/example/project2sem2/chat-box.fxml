@@ -13,12 +13,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parentID" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7d9496;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Controller.ChatBoxController">
+<AnchorPane fx:id="parentID" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Controller.ChatBoxController">
    <children>
       <Label fx:id="NameID" layoutX="93.0" layoutY="10.0" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
+      </Label>
+
+      <Label fx:id="onderwerpID" layoutX="400.0" layoutY="10.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <text>Onderwerp: </text>
       </Label>
 
       <ListView fx:id="listviewID" layoutX="5.0" layoutY="70.0" prefWidth="106.0" style="-fx-background-color: #dae7ed;" AnchorPane.bottomAnchor="61.200000000000045" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0" />

@@ -10,14 +10,11 @@ class DatabaseTest {
 
     @BeforeAll
     static void setup() {
-        // Ensure the database is in a clean state before running tests.
-        // This might involve deleting test users, etc.
         Database.deleteUser("testuser");
     }
 
     @AfterEach
     void tearDown() {
-        // Clean up after each test if necessary
     }
 
     @Test
