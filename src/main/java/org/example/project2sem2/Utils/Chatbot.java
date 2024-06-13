@@ -12,6 +12,7 @@ public class Chatbot {
     private Chat chat;
     private ChatBoxController chatBoxController;
     private TextField textfield;
+    private TextField typetextID;
     private int chatIndex;
     private List<Chat> chats;
     private List<String> chatList;
@@ -20,28 +21,29 @@ public class Chatbot {
 
     private FileProcessor fileProcessor = new FileProcessor();
 
-    public Chatbot(ChatBoxController chatBoxController, SearchEngine searchEngine, TextArea textAreaID, TextField textfield) {
+    public Chatbot(ChatBoxController chatBoxController, SearchEngine searchEngine, TextArea textAreaID, TextField typetextID) {
         this.chat = new Chat();
         this.chatBoxController = chatBoxController;
         this.searchEngine = searchEngine;
         this.fileProcessor = new FileProcessor();
         this.chats = new ArrayList<>();
-        this.textAreaID = textAreaID;
-        this.textfield = textfield;
+        this.textAreaID = textAreaID; // Initialiseer de textAreaID
+        this.typetextID = typetextID; // Initialiseer de typetextID
     }
 
-    public void checkText() {
+
+    public void processText() {
+        checkText();
+    }
+
+    private void checkText() {
         if (!chats.isEmpty()) {
             Chat chat = chats.get(chatIndex);
-            if (textfield.getPromptText().equals("Stel uw vraag.") || textfield.getPromptText().equals("Ask a question")) {
-                chat.setTitle(textfield.getText());
-                chatList.set(chatIndex, chat.toString());
-            }
-            String userQuestion = textfield.getText();
-            changeTextField("\nQ: ", userQuestion); // Gebruik changeTextField om de vraag toe te voegen aan de TextArea
+            String userQuestion = typetextID.getText();
+            textAreaID.appendText("\nQ: " + userQuestion); // Voeg de vraag toe aan de TextArea
             String botAnswer = searchEngine.findAnswer(userQuestion);
-            changeTextField("\nA: ", botAnswer); // Gebruik changeTextField om het antwoord toe te voegen aan de TextArea
-            textfield.setText("");
+            textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
+            typetextID.setText("");
             chat.setHistory(textAreaID.getText());
         }
     }

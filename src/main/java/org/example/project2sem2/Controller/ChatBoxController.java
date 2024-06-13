@@ -39,7 +39,7 @@ public class ChatBoxController {
     private TextArea textAreaID;
 
     @FXML
-    private TextField textfield;
+    private TextField typetextID;
 
     @FXML
     private Button textfieldEnterID;
@@ -55,24 +55,37 @@ public class ChatBoxController {
     private int chatIndex = 0;
 
     private Chatbot chatbot;
+    private SearchEngine searchEngine;
 
     public void checkText() {
-        chatbot.checkText(); // Roep de checkText methode van de Chatbot instantie aan
+        if (!chats.isEmpty()) {
+            Chat chat = chats.get(chatIndex);
+            String userQuestion = typetextID.getText();
+            textAreaID.appendText("\nQ: " + userQuestion); // Voeg de vraag toe aan de TextArea
+            String botAnswer = searchEngine.findAnswer(userQuestion);
+            textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
+            typetextID.setText("");
+            chat.setHistory(textAreaID.getText());
+        }
     }
+
 
     public void initialize() {
         // Stel de standaardtaal in op Nederlands
         setDutch();
 
-        textfieldEnterID.setOnAction(event -> {
-            chatbot.checkText();
-            event.consume();
+        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Geef de typetextID door aan de Chatbot klasse
+        typetextID.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                chatbot.processText();
+                event.consume();
+            }
         });
 
-        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, textfield);
-        textfield.setOnKeyPressed(event -> {
+        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Geef de typetextID door aan de Chatbot klasse
+        typetextID.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                chatbot.checkText();
+                checkText();
                 event.consume();
             }
         });
@@ -101,7 +114,7 @@ public class ChatBoxController {
     public void setDutch() {
         chatlistID.setText("Chatlijst");
         textAreaID.setPromptText("Hier komt uw gesprek te staan.");
-        textfield.setPromptText("Stel uw vraag.");
+        typetextID.setPromptText("Stel uw vraag.");
         instellingenID.setText("Instellingen");
         uitloggenID.setText("Uitloggen");
         setLoggedInUserText("Ingelogd als: ");
@@ -111,7 +124,7 @@ public class ChatBoxController {
     public void setEnglish() {
         chatlistID.setText("Chat List");
         textAreaID.setPromptText("Here is your conversation");
-        textfield.setPromptText("Ask a question");
+        typetextID.setPromptText("Ask a question");
         instellingenID.setText("Settings");
         uitloggenID.setText("Logout");
         setLoggedInUserText("Logged in as: ");
