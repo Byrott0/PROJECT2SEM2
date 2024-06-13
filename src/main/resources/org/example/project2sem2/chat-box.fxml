@@ -63,7 +63,7 @@
             <Image url="@../../../images/image__2_-removebg-preview.png" />
          </image>
       </ImageView>
-      <Label fx:id="NameID1" layoutX="132.0" layoutY="31.0" prefHeight="26.0" prefWidth="274.0">
+      <Label fx:id="NameID1" layoutX="330.0" layoutY="22.0" prefHeight="26.0" prefWidth="274.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
