@@ -90,6 +90,7 @@ public class WijzigSettingsController {
             }
         }
     }
+    //
 
     @FXML
     private void handleBackButton(MouseEvent event) {
