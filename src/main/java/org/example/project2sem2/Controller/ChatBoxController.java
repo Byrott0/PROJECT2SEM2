@@ -16,8 +16,6 @@ import org.example.project2sem2.Utils.SearchEngine;
 import org.example.project2sem2.Utils.LoggedInUser;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -157,7 +155,6 @@ public class ChatBoxController {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     public void LogOutfunction(ActionEvent event) throws IOException {

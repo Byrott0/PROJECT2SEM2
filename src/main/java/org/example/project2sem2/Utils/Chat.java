@@ -1,6 +1,5 @@
 package org.example.project2sem2.Utils;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
@@ -29,7 +28,6 @@ public class Chat {
     }
 
     public Chat() {
-        
     }
 
     public String getHistory() {
@@ -49,7 +47,4 @@ public class Chat {
         return title;
     }
 
-    public void BeantwoordVraag(String question) {
-
-    }
 }

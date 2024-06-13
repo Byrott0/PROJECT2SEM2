@@ -91,7 +91,6 @@ public class WijzigSettingsController {
         }
     }
     //test commit voor bevestiging
-
     @FXML
     private void handleBackButton(MouseEvent event) {
         try {

@@ -6,7 +6,6 @@ import org.example.project2sem2.Controller.ChatBoxController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Chatbot {
     private Chat chat;
@@ -27,8 +26,8 @@ public class Chatbot {
         this.searchEngine = searchEngine;
         this.fileProcessor = new FileProcessor();
         this.chats = new ArrayList<>();
-        this.textAreaID = textAreaID; // Initialiseer de textAreaID
-        this.typetextID = typetextID; // Initialiseer de typetextID
+        this.textAreaID = textAreaID;
+        this.typetextID = typetextID;
     }
 
 
@@ -46,9 +45,5 @@ public class Chatbot {
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());
         }
-    }
-
-    private void changeTextField(String prefix, String text) {
-        textAreaID.appendText(prefix + " response " + text + "\n");
     }
 }

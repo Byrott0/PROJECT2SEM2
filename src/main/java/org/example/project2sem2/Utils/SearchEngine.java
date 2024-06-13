@@ -47,9 +47,9 @@ public class SearchEngine {
         String key = findKey(question);
         if (key != null) {
             String response = keywordResponses.get(key);
-            return response != null ? response : "Geen antwoord gevonden voor de sleutel " + key;
+            return response != null ? response : "Geen antwoord gevonden voor: " + key;
         } else {
-            return "Geen sleutel gevonden voor de vraag: " + question;
+            return "Geen data gevonden voor: " + question;
         }
     }
 

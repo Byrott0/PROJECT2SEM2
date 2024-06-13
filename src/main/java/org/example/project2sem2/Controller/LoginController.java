@@ -1,19 +1,15 @@
 package org.example.project2sem2.Controller;
 
 import javafx.scene.control.Alert;
-import org.example.project2sem2.Model.User;
 import org.example.project2sem2.Utils.Database;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.example.project2sem2.Utils.LoggedInUser;
 import org.example.project2sem2.Utils.SceneSwitcher;
 
 public class LoginController {
-
 
     @FXML
     private PasswordField passwordField;
@@ -39,10 +35,8 @@ public class LoginController {
         }
     }
 
-
     @FXML
     void switchToSignup(ActionEvent event) {
         SceneSwitcher.switchScene(event, "sign-up.fxml");
     }
-
 }

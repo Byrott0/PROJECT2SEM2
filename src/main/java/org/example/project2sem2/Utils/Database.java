@@ -1,7 +1,6 @@
 package org.example.project2sem2.Utils;
 
 import org.example.project2sem2.Model.User;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
