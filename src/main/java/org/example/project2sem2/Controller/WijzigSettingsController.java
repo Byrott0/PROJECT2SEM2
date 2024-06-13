@@ -86,11 +86,11 @@ public class WijzigSettingsController {
                     currentPasswordField.setText(loggedInUser.getPassword());
                 }
             } else {
-                // User chose CANCEL or closed the dialog
+
             }
         }
     }
-    //
+    //test commit voor bevestiging
 
     @FXML
     private void handleBackButton(MouseEvent event) {
