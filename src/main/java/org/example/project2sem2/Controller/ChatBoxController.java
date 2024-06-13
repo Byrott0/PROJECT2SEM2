@@ -139,6 +139,17 @@ public class ChatBoxController {
         chatIndex = chats.size() - 1;
     }
 
+    @FXML
+    void switchToWijzigSettings(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/org/example/project2sem2/wijzig-settings.fxml"));
+            Stage stage = (Stage) instellingenID.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     public void LogOutfunction(ActionEvent event) throws IOException {
