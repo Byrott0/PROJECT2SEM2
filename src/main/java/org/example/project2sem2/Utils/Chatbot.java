@@ -41,7 +41,7 @@ public class Chatbot {
             Chat chat = chats.get(chatIndex);
             String userQuestion = typetextID.getText();
             textAreaID.appendText("\nQ: " + userQuestion); // Voeg de vraag toe aan de TextArea
-            String botAnswer = searchEngine.findAnswer(userQuestion);
+            String botAnswer = searchEngine.getResponse(userQuestion); // Gebruik de getResponse methode
             textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());

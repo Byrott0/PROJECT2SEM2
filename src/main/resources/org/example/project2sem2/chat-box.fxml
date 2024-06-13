@@ -30,9 +30,6 @@
             <Font size="18.0" />
          </font>
       </TextField>
-
-      <Button fx:id="textfieldEnterID" layoutX="737.0" layoutY="553.0" minHeight="15.0" minWidth="15.0" onAction="#checkText" prefHeight="26.0" prefWidth="27.0" text="&gt;" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="36.0" />
-
       <TextArea fx:id="textAreaID" editable="false" promptText="Hier komt uw gesprek te staan." AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="69.0">
          <font>
             <Font name="System Bold" size="14.0" />

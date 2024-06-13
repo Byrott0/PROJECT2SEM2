@@ -1,6 +1,9 @@
 package org.example.project2sem2.Utils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SearchEngine {
     private List<String> javaKeywords;
@@ -9,44 +12,48 @@ public class SearchEngine {
     private List<String> socialPlatformApplicationKeywords;
     private List<String> financialSystemKeywords;
     private List<String> domainModelKeywords;
+    private Map<String, String> keywordResponses;
 
-    public String findKey(String question) {
-        String key = null;
-        if (containsKeyword(question, javaKeywords)) {
-            key = "java";
-        } else if (containsKeyword(question, pythonKeywords)) {
-            key = "python";
-        } else if (containsKeyword(question, languageKeywords)) {
-            key = "language";
-        } else if (containsKeyword(question, socialPlatformApplicationKeywords)) {
-            key = "social-platform-application";
-        } else if (containsKeyword(question, financialSystemKeywords)) {
-            key = "financial-system";
-        } else if (containsKeyword(question, domainModelKeywords)) {
-            key = "domain-model";
-        }
-        return key;
+
+    public SearchEngine() {
+        // Initialiseer de lijsten...
+        javaKeywords = new ArrayList<>();
+        pythonKeywords = new ArrayList<>();
+        languageKeywords = new ArrayList<>();
+        socialPlatformApplicationKeywords = new ArrayList<>();
+        financialSystemKeywords = new ArrayList<>();
+        domainModelKeywords = new ArrayList<>();
+
+        FileProcessor fileProcessor = new FileProcessor();
+        keywordResponses = new HashMap<>();
+        keywordResponses.put("java", fileProcessor.loadDataFromFile("src/main/resources/files/java.txt"));
+        keywordResponses.put("python", fileProcessor.loadDataFromFile("src/main/resources/files/python.txt"));
+        keywordResponses.put("language", fileProcessor.loadDataFromFile("src/main/resources/files/language.txt"));
+        keywordResponses.put("social-platform-application", fileProcessor.loadDataFromFile("src/main/resources/files/socialplatformapplication.txt"));
+        keywordResponses.put("financial-system", fileProcessor.loadDataFromFile("src/main/resources/files/financialsystem.txt"));
+        keywordResponses.put("domain-model", fileProcessor.loadDataFromFile("src/main/resources/files/domainmodel.txt"));
     }
 
-    private boolean containsKeyword(String question, List<String> keywords) {
-        // Implement the method...
-        return true;
+    public String findKey(String question) {
+        String[] keys = {"java","python","language","social-platform-application","financial-system", "domain-model"};
+        for (String key : keys)
+            if (question.contains(key)){
+                return key;
+            }
+        return null;
     }
 
     public String findAnswer(String question) {
         String key = findKey(question);
         if (key != null) {
-            // Implement your logic to find the answer based on the key
-            return "key " + key;
+            String response = keywordResponses.get(key);
+            return response != null ? response : "Geen antwoord gevonden voor de sleutel " + key;
         } else {
-            return "Response";
+            return "Geen sleutel gevonden voor de vraag: " + question;
         }
     }
 
     public String getResponse(String input) {
-        String key = findKey(input);
-        String response = findAnswer(key);
-        return response;
+        return findAnswer(input);
     }
-
 }

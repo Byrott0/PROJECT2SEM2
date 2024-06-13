@@ -50,18 +50,12 @@ public class ChatBoxController {
     @FXML
     private Label NameID1;
 
-    private User user;
-
     private ArrayList<Chat> chats = new ArrayList<>();
     private ObservableList<String> chatList;
     private int chatIndex = 0;
 
     private Chatbot chatbot;
     private SearchEngine searchEngine;
-
-    public ChatBoxController(User user) {
-        this.user = user;
-    }
 
     public void checkText() {
         if (!chats.isEmpty()) {
