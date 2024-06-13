@@ -82,14 +82,43 @@ public class Database {
     }
 
     // Method to update user details
-    public static boolean updateUser(User user) {
-        String query = "UPDATE credentials SET password = ?, email = ? WHERE username = ?";
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+    public static boolean updateUser(User user, String oldUsername) {
+        StringBuilder query = new StringBuilder("UPDATE credentials SET ");
+        boolean isPasswordChanged = user.getPassword() != null && !user.getPassword().isEmpty();
+        boolean isEmailChanged = user.getEmail() != null && !user.getEmail().isEmpty();
+        boolean isUsernameChanged = user.getUsername() != null && !user.getUsername().isEmpty();
 
-            preparedStatement.setString(1, user.getPassword());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getUsername());
+        if (isPasswordChanged) {
+            query.append("password = ?");
+        }
+        if (isEmailChanged) {
+            if (isPasswordChanged) {
+                query.append(", ");
+            }
+            query.append("email = ?");
+        }
+        if (isUsernameChanged) {
+            if (isPasswordChanged || isEmailChanged) {
+                query.append(", ");
+            }
+            query.append("username = ?");
+        }
+        query.append(" WHERE username = ?");
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query.toString())) {
+
+            int index = 1;
+            if (isPasswordChanged) {
+                preparedStatement.setString(index++, user.getPassword());
+            }
+            if (isEmailChanged) {
+                preparedStatement.setString(index++, user.getEmail());
+            }
+            if (isUsernameChanged) {
+                preparedStatement.setString(index++, user.getUsername());
+            }
+            preparedStatement.setString(index, oldUsername);
 
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
