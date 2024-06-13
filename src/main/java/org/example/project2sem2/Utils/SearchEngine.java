@@ -25,12 +25,12 @@ public class SearchEngine {
 
         FileProcessor fileProcessor = new FileProcessor();
         keywordResponses = new HashMap<>();
-        keywordResponses.put("java", fileProcessor.loadDataFromFile("src/main/resources/files/java.txt"));
-        keywordResponses.put("python", fileProcessor.loadDataFromFile("src/main/resources/files/python.txt"));
-        keywordResponses.put("language", fileProcessor.loadDataFromFile("src/main/resources/files/language.txt"));
-        keywordResponses.put("social-platform-application", fileProcessor.loadDataFromFile("src/main/resources/files/socialplatformapplication.txt"));
-        keywordResponses.put("financial-system", fileProcessor.loadDataFromFile("src/main/resources/files/financialsystem.txt"));
-        keywordResponses.put("domain-model", fileProcessor.loadDataFromFile("src/main/resources/files/domainmodel.txt"));
+        keywordResponses.put("java", fileProcessor.loadDataFromFile("src/main/resources/files/java(nl).txt"));
+        keywordResponses.put("python", fileProcessor.loadDataFromFile("src/main/resources/files/python(nl).txt"));
+        keywordResponses.put("language", fileProcessor.loadDataFromFile("src/main/resources/files/language(nl).txt"));
+        keywordResponses.put("social-platform-application", fileProcessor.loadDataFromFile("src/main/resources/files/socialplatformapplication(nl).txt"));
+        keywordResponses.put("financial-system", fileProcessor.loadDataFromFile("src/main/resources/files/financialsystem(nl).txt"));
+        keywordResponses.put("domain-model", fileProcessor.loadDataFromFile("src/main/resources/files/domainmodel(nl).txt"));
     }
 
     public String findKey(String question) {

@@ -1,0 +1,50 @@
+Java is een objectgeoriënteerde programmeertaal op hoog niveau, ontwikkeld door Sun Microsystems (nu eigendom van Oracle). Het staat bekend om zijn platformonafhankelijkheid, wat betekent dat Java-programma's kunnen draaien op elk apparaat of besturingssysteem waarop een Java Virtual Machine (JVM) is geïnstalleerd."
+
+Functies:
+
+Objectgericht:
+
+Java is een objectgeoriënteerde taal, wat betekent dat het de concepten klassen, objecten, overerving, inkapseling en polymorfisme ondersteunt.
+
+Platformonafhankelijkheid:
+
+Java-programma's worden gecompileerd in bytecode, die kan worden uitgevoerd op elk platform met een Java Virtual Machine (JVM). Hierdoor kunnen Java-applicaties zeer draagbaar zijn.
+
+Geheugenbeheer:
+
+Java beheert de geheugentoewijzing en -deallocatie automatisch via een proces dat garbage collection wordt genoemd. Dit helpt bij het voorkomen van geheugenlekken en handmatige geheugenbeheerfouten.
+
+Afhandeling van uitzonderingen:
+
+Java heeft ingebouwde ondersteuning voor de afhandeling van uitzonderingen, waardoor ontwikkelaars robuuste code kunnen schrijven die fouten en uitzonderingen op een elegante manier kan afhandelen.
+
+Multithreading:
+
+Java ondersteunt multithreading, waardoor gelijktijdige uitvoering van meerdere threads binnen één proces mogelijk is. Deze functie is handig voor het ontwikkelen van toepassingen die gelijktijdige verwerking vereisen.
+
+Bibliotheken:
+
+Java Standard Library (Java SE):
+
+De Java Standard Library biedt een uitgebreide reeks klassen en interfaces voor algemene programmeertaken zoals I/O-bewerkingen, netwerken, datastructuren en hulpprogramma's.
+
+Enterprise Edition (Java EE):
+
+Java EE is een reeks specificaties die het Java SE-platform uitbreiden ter ondersteuning van de ontwikkeling van applicaties op ondernemingsniveau. Het bevat API's voor het bouwen van webgebaseerde applicaties, zakelijke berichtenuitwisseling en gedistribueerd computergebruik.
+
+Apache Commons:
+
+Apache Commons is een verzameling herbruikbare Java-componenten en -hulpprogramma's ontwikkeld door de Apache Software Foundation. Het biedt implementaties voor algemene programmeertaken die niet worden gedekt door de standaard Java-bibliotheken.
+Hulpmiddelen:
+
+Integrated Development Environments (IDE's):
+
+Java-ontwikkelaars gebruiken vaak IDE's zoals Eclipse, IntelliJ IDEA en NetBeans voor het schrijven, debuggen en testen van Java-code. Deze IDE's bieden functies zoals het automatisch aanvullen van code, syntaxisaccentuering en projectbeheer.
+
+Bouwtools:
+
+Bouwtools zoals Apache Maven en Gradle worden gebruikt om het proces van het compileren, testen en verpakken van Java-applicaties te automatiseren. Ze beheren afhankelijkheden, behandelen projectconfiguraties en faciliteren continue integratie.
+
+Debugging Tools:
+
+Java-ontwikkelaars gebruiken debugging tools zoals Java Debugger (JDB), Eclipse Debugger en IntelliJ Debugger om fouten in hun code te identificeren en op te lossen. Met deze tools kunnen ontwikkelaars breekpunten instellen, variabelen inspecteren en de uitvoering van code stapsgewijs doorlopen.
