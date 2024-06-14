@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.example.project2sem2.Model.Settings;
 import org.example.project2sem2.Model.User;
 import org.example.project2sem2.Utils.Database;
 import org.example.project2sem2.Utils.LoggedInUser;
@@ -44,6 +45,9 @@ public class WijzigSettingsController {
     @FXML
     private Button backButton;
 
+
+    private org.example.project2sem2.Model.Settings Settings;
+
     @FXML
     public void initialize() {
         User loggedInUser = LoggedInUser.getInstance().getUser();
@@ -72,6 +76,7 @@ public class WijzigSettingsController {
             if (result.get() == ButtonType.OK) {
                 if (!newEmail.isEmpty()) {
                     loggedInUser.setEmail(newEmail);
+                    Settings.Wijzig();
                 }
                 if (!newUsername.isEmpty()) {
                     // Check if the new username already exists in the database
@@ -84,10 +89,12 @@ public class WijzigSettingsController {
                         return; // Exit the method early
                     } else {
                         loggedInUser.setUsername(newUsername);
+                        Settings.Wijzig();
                     }
                 }
                 if (!newPassword.isEmpty()) {
                     loggedInUser.setPassword(newPassword);
+                    Settings.Wijzig();
                 }
 
                 if (Database.updateUser(loggedInUser, oldUsername)) {

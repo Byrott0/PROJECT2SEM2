@@ -71,26 +71,17 @@ public class Settings {
         }
 
     public void Talen(){
-            // Wijzigingen aanbrengen...
             String info = "Language settings changed";
-
-            // Informeer de observer over de wijziging
             notifyObserver(info);
         }
 
     public void Wijzig(){
-            // Wijzigingen aanbrengen...
-            String info = "General settings changed";
-
-            // Informeer de observer over de wijziging
+            String info = "General setting changed";
             notifyObserver(info);
         }
 
     public void LogUit(){
-            // Wijzigingen aanbrengen...
             String info = "User logged out";
-
-            // Informeer de observer over de wijziging
             notifyObserver(info);
         }
     }

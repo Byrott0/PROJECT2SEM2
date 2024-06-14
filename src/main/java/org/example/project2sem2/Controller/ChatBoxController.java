@@ -63,6 +63,7 @@ public class ChatBoxController {
     private SearchEngine searchEngine;
 
     private User loggedInUser;
+    private org.example.project2sem2.Model.Settings Settings;
 
     public ChatBoxController(User loggedInUser) { // Add this constructor
         this.loggedInUser = loggedInUser;
@@ -159,6 +160,7 @@ public class ChatBoxController {
         setLoggedInUserText("Ingelogd als: ");
         newSubjectID.setPromptText("Nieuw onderwerp");
         language = "nl";
+        Settings.Talen();
     }
 
     @FXML
@@ -171,6 +173,7 @@ public class ChatBoxController {
         setLoggedInUserText("Logged in as: ");
         newSubjectID.setPromptText("New subject");
         language = "en";
+        Settings.Talen();
     }
 
     public void addChat() {
@@ -212,6 +215,7 @@ public class ChatBoxController {
                 if (!chat.isLoadedFromDB()) {
                     Database.insertChatMessage(chat);
                 }
+                Settings.LogUit();
             }
             chats.clear();
             chatList.clear();
