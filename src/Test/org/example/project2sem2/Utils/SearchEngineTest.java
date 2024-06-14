@@ -26,6 +26,19 @@ class SearchEngineTest {
     }
 
     @Test
+    void findKey_NotExist() {
+        // Arrange
+        String question = "How is the weather today?"; // Geen van de sleutelwoorden komt hierin voor
+
+        // Act
+        String result = searchEngine.findKey(question);
+
+        // Assert
+        assertNull(result, "The method should return null as the question contains no keywords.");
+    }
+
+
+    @Test
     void findAnswer_WithPythonKeyword_ReturnsPythonResponse() {
         // Arrange
         String question = "What's new in python?";
