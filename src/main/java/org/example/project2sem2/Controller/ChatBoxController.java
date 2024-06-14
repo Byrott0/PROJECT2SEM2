@@ -63,7 +63,7 @@ public class ChatBoxController {
     private Chatbot chatbot;
     private SearchEngine searchEngine;
 
-    private User loggedInUser; // Add this line
+    private User loggedInUser;
 
     public ChatBoxController(User loggedInUser) { // Add this constructor
         this.loggedInUser = loggedInUser;
@@ -79,10 +79,9 @@ public class ChatBoxController {
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());
 
-            // Update the chat name in the chat list
+
             String chatName = userQuestion;
             chatList.set(chatIndex, chatName);
-            // Update the chat name in the chats
             chat.setName(chatName);
         }
     }
@@ -105,11 +104,12 @@ public class ChatBoxController {
     public void initialize() {
         setDutch();
 
+
         chatList = listviewID.getItems();
 
         loadChatsForLoggedInUser();
 
-        addChat();
+
 
         chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Pass the typetextID to the Chatbot class
         typetextID.setOnKeyPressed(event -> {
