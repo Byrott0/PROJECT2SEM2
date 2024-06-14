@@ -1,9 +1,6 @@
 package org.example.project2sem2.Utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SearchEngine {
     private List<String> javaKeywords;
@@ -40,6 +37,10 @@ public class SearchEngine {
                 return key;
             }
         return null;
+    }
+
+    public List<String> getKeys() {
+        return Arrays.asList("java","python","language","social-platform-application","financial-system", "domain-model");
     }
 
     public String findAnswer(String question) {
