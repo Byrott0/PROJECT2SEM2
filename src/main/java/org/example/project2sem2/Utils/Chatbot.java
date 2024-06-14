@@ -7,7 +7,7 @@ import org.example.project2sem2.Controller.ChatBoxController;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chatbot {
+public class Chatbot implements SetObserver {
     private Chat chat;
     private ChatBoxController chatBoxController;
     private TextField textfield;
@@ -32,5 +32,10 @@ public class Chatbot {
 
     public void processText() {
         chatBoxController.checkText();
+    }
+
+    @Override
+    public void update(String info) {
+        textAreaID.appendText("Settings updated with info: " + info + "\n");
     }
 }
