@@ -147,7 +147,7 @@ public class Database {
             return false;
         }
     }
-
+//
     // Method to fetch a user by username
     public static User getUser(String username) {
         String query = "SELECT * FROM credentials WHERE username = ?";

@@ -57,7 +57,6 @@ public class ChatBoxController {
 
     private String language;
 
-
     private int chatIndex = 0;
 
     private Chatbot chatbot;
