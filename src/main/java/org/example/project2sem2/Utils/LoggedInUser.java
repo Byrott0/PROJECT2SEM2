@@ -1,5 +1,4 @@
 package org.example.project2sem2.Utils;
-
 import org.example.project2sem2.Model.User;
 
 public class LoggedInUser {

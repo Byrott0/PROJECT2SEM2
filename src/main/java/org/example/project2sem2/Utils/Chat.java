@@ -1,5 +1,6 @@
 package org.example.project2sem2.Utils;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
@@ -19,32 +20,37 @@ public class Chat {
     @FXML
     private MenuItem uitloggenID;
 
-    private String title;
-    private String history;
-
-    public Chat(String title) {
-        this.title = title;
-        this.history = "";
-    }
-
     public Chat() {
+        // ...
     }
 
-    public String getHistory() {
-        return history;
+    @FXML
+    public void addChat(ActionEvent actionEvent) {
+        // ...
     }
 
-    public void setHistory(String history) {
-        this.history = history;
+    @FXML
+    public void openFileChooser(ActionEvent actionEvent) {
+        // ...
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @FXML
+    public void checkText(ActionEvent actionEvent) {
+        // ...
     }
 
-    @Override
-    public String toString() {
-        return title;
+    @FXML
+    public void goToAccountBeheerScherm(ActionEvent actionEvent) {
+        // ...
     }
 
+    @FXML
+    public void goToAdminPage(ActionEvent actionEvent) {
+        // ...
+    }
+
+    @FXML
+    public void switchToLoginPage(ActionEvent actionEvent) {
+        // ...
+    }
 }
