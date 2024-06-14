@@ -214,7 +214,7 @@ public class ChatBoxController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             for (Chat chat : chats) {
-                if (!chat.isLoadedFromDB() || (chat.getName() != null)) { // wordt alleen opgeslagen als het niet een geladen of ongebruikte chat is
+                if (!chat.isLoadedFromDB()) {
                     Database.insertChatMessage(chat);
                 }
             }
