@@ -10,7 +10,7 @@ public class Chat {
         this.title = title;
         this.name = name;
         this.history = "";
-        this.loadedFromDB = false; // Default to false for new chats
+        this.loadedFromDB = false;
     }
 
     public Chat(String title, String name, boolean loadedFromDB) {
