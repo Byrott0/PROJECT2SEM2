@@ -17,7 +17,7 @@ class FileProcessorTest {
         // Arrange
         String expectedContent = "voeg iets toe";// Pas dit aan naar de werkelijke verwachte inhoud van je bestand
         File tempFile = File.createTempFile("testfile", ".txt");// Correcte relatieve pad zonder 'src/main/resources/'
-        tempFile.deleteOnExit(); // Ensure the file is deleted after the test
+        tempFile.deleteOnExit(); // Zorg ervoor dat het bestand na de test wordt verwijderd
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
             writer.write(expectedContent);
