@@ -1,5 +1,4 @@
 package org.example.project2sem2.Controller;
-
 import javafx.event.ActionEvent;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ChatBoxController {
+public class ChatBoxController{
 
     @FXML
     private Label NameID;
@@ -36,7 +35,6 @@ public class ChatBoxController {
 
     @FXML
     private TextField typetextID;
-
     @FXML
     private Button textfieldEnterID;
 

@@ -10,6 +10,20 @@ public class Settings {
     private String newPassword;
     private SetObserver observer;
 
+    private static Settings instance;
+
+    private String changeInfo;
+
+    private Settings() {}
+
+    public static Settings getInstance() {
+        if (instance == null) {
+            instance = new Settings();
+        }
+        return instance;
+    }
+
+
     // Getters and Setters
     public String getCurrentEmail() {
         return currentEmail;
@@ -39,24 +53,14 @@ public class Settings {
         return newEmail;
     }
 
-    public void setNewEmail(String newEmail) {
-        this.newEmail = newEmail;
-    }
 
     public String getNewUsername() {
         return newUsername;
     }
 
-    public void setNewUsername(String newUsername) {
-        this.newUsername = newUsername;
-    }
 
     public String getNewPassword() {
         return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
     }
 
 
@@ -64,25 +68,30 @@ public class Settings {
         this.observer = observer;
     }
 
+    public String getChangeInfo() {
+        return changeInfo;
+    }
+
     protected void notifyObserver(String info) {
-            if (observer != null) {
-                observer.update(info);
-            }
-        }
-
-    public void Talen(){
-            String info = "Language settings changed";
-            notifyObserver(info);
-        }
-
-    public void Wijzig(){
-            String info = "General setting changed";
-            notifyObserver(info);
-        }
-
-    public void LogUit(){
-            String info = "User logged out";
-            notifyObserver(info);
+        this.changeInfo = info; // Store the settings change information
+        if (observer != null) {
+            observer.update(info);
         }
     }
+
+    public void setNewEmail(String newEmail) {
+        this.newEmail = newEmail;
+        notifyObserver("New email set to: " + newEmail);
+    }
+
+    public void setNewUsername(String newUsername) {
+        this.newUsername = newUsername;
+        notifyObserver("New username set to: " + newUsername);
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+        notifyObserver("New password set");
+    }
+}
 

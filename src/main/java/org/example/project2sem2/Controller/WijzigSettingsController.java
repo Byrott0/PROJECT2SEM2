@@ -1,5 +1,6 @@
 package org.example.project2sem2.Controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,11 +16,12 @@ import org.example.project2sem2.Model.Settings;
 import org.example.project2sem2.Model.User;
 import org.example.project2sem2.Utils.Database;
 import org.example.project2sem2.Utils.LoggedInUser;
+import org.example.project2sem2.Utils.SetObserver;
 
 import java.io.IOException;
 import java.util.Optional;
 
-public class WijzigSettingsController {
+public class WijzigSettingsController implements SetObserver {
 
     @FXML
     private TextField currentEmailField;
@@ -44,8 +46,19 @@ public class WijzigSettingsController {
 
     @FXML
     private Button backButton;
+    private Settings settings;
 
 
+    @Override
+    public void update(String info) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Settings Changed");
+            alert.setHeaderText(null);
+            alert.setContentText(info);
+            alert.showAndWait();
+        });
+    }
 
 
     @FXML
@@ -56,10 +69,15 @@ public class WijzigSettingsController {
             currentUsernameField.setText(loggedInUser.getUsername());
             currentPasswordField.setText(loggedInUser.getPassword());
         }
+
+        Settings settings = Settings.getInstance();
+        settings.addObserver(this);
     }
 
     @FXML
     private void handleSaveButton(MouseEvent event) {
+
+        settings = Settings.getInstance();
         String newEmail = newEmailField.getText();
         String newUsername = newUsernameField.getText();
         String newPassword = newPasswordField.getText();
@@ -76,6 +94,7 @@ public class WijzigSettingsController {
             if (result.get() == ButtonType.OK) {
                 if (!newEmail.isEmpty()) {
                     loggedInUser.setEmail(newEmail);
+                    settings.setNewEmail(newEmail);
 
                 }
                 if (!newUsername.isEmpty()) {
@@ -89,10 +108,12 @@ public class WijzigSettingsController {
                         return; // Exit the method early
                     } else {
                         loggedInUser.setUsername(newUsername);
+                        settings.setNewUsername(newUsername);
                     }
                 }
                 if (!newPassword.isEmpty()) {
                     loggedInUser.setPassword(newPassword);
+                    settings.setNewPassword(newPassword);
                 }
 
                 if (Database.updateUser(loggedInUser, oldUsername)) {
