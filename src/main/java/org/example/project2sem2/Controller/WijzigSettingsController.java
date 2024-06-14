@@ -46,7 +46,7 @@ public class WijzigSettingsController {
     private Button backButton;
 
 
-    private org.example.project2sem2.Model.Settings Settings;
+
 
     @FXML
     public void initialize() {
@@ -76,7 +76,7 @@ public class WijzigSettingsController {
             if (result.get() == ButtonType.OK) {
                 if (!newEmail.isEmpty()) {
                     loggedInUser.setEmail(newEmail);
-                    Settings.Wijzig();
+
                 }
                 if (!newUsername.isEmpty()) {
                     // Check if the new username already exists in the database
@@ -89,12 +89,10 @@ public class WijzigSettingsController {
                         return; // Exit the method early
                     } else {
                         loggedInUser.setUsername(newUsername);
-                        Settings.Wijzig();
                     }
                 }
                 if (!newPassword.isEmpty()) {
                     loggedInUser.setPassword(newPassword);
-                    Settings.Wijzig();
                 }
 
                 if (Database.updateUser(loggedInUser, oldUsername)) {
