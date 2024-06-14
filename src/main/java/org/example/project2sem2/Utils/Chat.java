@@ -21,9 +21,11 @@ public class Chat {
 
     private String title;
     private String history;
+    private String name;
 
-    public Chat(String title) {
+    public Chat(String title, String name) {
         this.title = title;
+        this.name = name;
         this.history = "";
     }
 
@@ -34,6 +36,13 @@ public class Chat {
         return history;
     }
 
+    public String setName(String name){
+        return name;
+    }
+    public String getName() {
+        return this.name;
+    }
+
     public void setHistory(String history) {
         this.history = history;
     }
@@ -41,6 +50,7 @@ public class Chat {
     public void setTitle(String title) {
         this.title = title;
     }
+
 
     @Override
     public String toString() {

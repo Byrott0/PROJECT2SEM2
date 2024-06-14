@@ -17,6 +17,7 @@ import org.example.project2sem2.Utils.LoggedInUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ChatBoxController {
@@ -49,10 +50,15 @@ public class ChatBoxController {
     private Label NameID1;
 
     @FXML
-    private Label onderwerpID;
+    private TextField newSubjectID;
+
+    @FXML
+    private Button changeSubjectButtonID;
 
     private ArrayList<Chat> chats = new ArrayList<>();
     private ObservableList<String> chatList;
+
+
     private int chatIndex = 0;
 
     private Chatbot chatbot;
@@ -74,43 +80,68 @@ public class ChatBoxController {
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());
 
-            // Update de onderwerpID label met de vraag van de gebruiker
-            onderwerpID.setText("Onderwerp: " + userQuestion);
+            // Update the chat name in the chat list
+            String chatName = userQuestion;
+            chatList.set(chatIndex, chatName);
+            // Update the chat name in the chats
+            chat.setName(chatName);
+        }
+    }
+
+    public void changeSubject() {
+        String newSubject = newSubjectID.getText();
+        setChatSubject(newSubject);
+        newSubjectID.clear();
+    }
+
+    public void setChatSubject(String newSubject) {
+        if (!chats.isEmpty()) {
+            // Update the chat name in the chat list
+            chatList.set(chatIndex, newSubject);
+            // Update the chat name in the chats
+            chats.get(chatIndex).setName(newSubject);
         }
     }
 
     public void initialize() {
-        // Stel de standaardtaal in op Nederlands
+        // Set the default language to Dutch
         setDutch();
 
-        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Geef de typetextID door aan de Chatbot klasse
+        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Pass the typetextID to the Chatbot class
         typetextID.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 chatbot.processText();
-                event.consume();
             }
         });
 
         this.searchEngine = new SearchEngine();
 
-        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Geef de typetextID door aan de Chatbot klasse
-        typetextID.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                checkText();
-                event.consume();
+        // Get the keywords from the SearchEngine instance
+        List<String> keywords = searchEngine.getKeys();
+
+        // Add a listener to the TextField
+        typetextID.textProperty().addListener((observable, oldValue, newValue) -> {
+            for (String keyword : keywords) {
+                if (newValue.contains(keyword)) {
+                    typetextID.setStyle("-fx-text-fill: green;");
+                    return;
+                }
             }
+            typetextID.setStyle("-fx-text-fill: black;");
         });
 
-        // Voeg een nieuwe conversatie toe aan de lijst en initialiseer de lijstweergave
+        // Add a new chat to the list and initialize the ListView
         chatList = listviewID.getItems();
-        chatList.add("New Conversation");
-        Chat chat = new Chat("New Chat " + (chatList.size() - 1));
+        String chatName = typetextID.getText(); // Use the text from the TextField directly
+        chatList.add(chatName);
+        Chat chat = new Chat(chatName, chatName + " " + (chatList.size() - 1));
         chats.add(chat);
 
-        // Stel een listener in voor het wijzigen van de selectie in de lijstweergave
         listviewID.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
             chatIndex = observableValue.getValue().intValue();
-            textAreaID.setText(chats.get(chatIndex).getHistory());
+            if (chatIndex >= 0 && chatIndex < chats.size()) {
+                textAreaID.setText(chats.get(chatIndex).getHistory());
+            }
         });
     }
 
@@ -128,8 +159,8 @@ public class ChatBoxController {
         typetextID.setPromptText("Stel uw vraag.");
         instellingenID.setText("Instellingen");
         uitloggenID.setText("Uitloggen");
-        onderwerpID.setText("Onderwerp: ");
         setLoggedInUserText("Ingelogd als: ");
+        newSubjectID.setPromptText("Nieuw onderwerp");
     }
 
     @FXML
@@ -139,17 +170,21 @@ public class ChatBoxController {
         typetextID.setPromptText("Ask a question");
         instellingenID.setText("Settings");
         uitloggenID.setText("Logout");
-        onderwerpID.setText("Subject:");
         setLoggedInUserText("Logged in as: ");
+        newSubjectID.setPromptText("New subject");
     }
 
     public void addChat() {
-        chats.get(chatIndex).setHistory(textAreaID.getText());
+        if (!chats.isEmpty()) {
+            chats.get(chatIndex).setHistory(textAreaID.getText());
+        }
         textAreaID.setText(null);
-        chatList.add("New Chat");
-        Chat chat = new Chat("New Chat " + (chatList.size() - 1));
+        String chatName = typetextID.getText(); // Use the text from the TextField directly
+        chatList.add(chatName);
+        Chat chat = new Chat(chatName, chatName + " " + (chatList.size() - 1));
         chats.add(chat);
         chatIndex = chats.size() - 1;
+        newSubjectID.setText(chatName);
     }
 
     @FXML
