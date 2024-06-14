@@ -6,14 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import org.example.project2sem2.Model.User;
-import org.example.project2sem2.Utils.Chat;
+import org.example.project2sem2.Utils.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.project2sem2.Utils.Chatbot;
-import org.example.project2sem2.Utils.SearchEngine;
-import org.example.project2sem2.Utils.LoggedInUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,6 +55,8 @@ public class ChatBoxController {
     private ArrayList<Chat> chats = new ArrayList<>();
     private ObservableList<String> chatList;
 
+    private String language;
+
 
     private int chatIndex = 0;
 
@@ -75,7 +74,7 @@ public class ChatBoxController {
             Chat chat = chats.get(chatIndex);
             String userQuestion = typetextID.getText();
             textAreaID.appendText("\nQ: " + userQuestion); // Voeg de vraag toe aan de TextArea
-            String botAnswer = searchEngine.findAnswer(userQuestion);
+            String botAnswer = searchEngine.findAnswer(userQuestion, language);
             textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());
@@ -107,6 +106,14 @@ public class ChatBoxController {
         // Set the default language to Dutch
         setDutch();
 
+        // Initialize the ObservableList for the ListView
+        chatList = listviewID.getItems();
+
+        // Load chats for the logged-in user
+        loadChatsForLoggedInUser();
+
+        addChat();
+
         chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Pass the typetextID to the Chatbot class
         typetextID.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -130,13 +137,6 @@ public class ChatBoxController {
             typetextID.setStyle("-fx-text-fill: black;");
         });
 
-        // Add a new chat to the list and initialize the ListView
-        chatList = listviewID.getItems();
-        String chatName = typetextID.getText(); // Use the text from the TextField directly
-        chatList.add(chatName);
-        Chat chat = new Chat(chatName, chatName + " " + (chatList.size() - 1));
-        chats.add(chat);
-
         listviewID.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
             chatIndex = observableValue.getValue().intValue();
             if (chatIndex >= 0 && chatIndex < chats.size()) {
@@ -144,6 +144,8 @@ public class ChatBoxController {
             }
         });
     }
+
+
 
     private void setLoggedInUserText(String prefix) {
         User loggedInUser = LoggedInUser.getInstance().getUser();
@@ -161,6 +163,7 @@ public class ChatBoxController {
         uitloggenID.setText("Uitloggen");
         setLoggedInUserText("Ingelogd als: ");
         newSubjectID.setPromptText("Nieuw onderwerp");
+        language = "nl";
     }
 
     @FXML
@@ -172,6 +175,7 @@ public class ChatBoxController {
         uitloggenID.setText("Logout");
         setLoggedInUserText("Logged in as: ");
         newSubjectID.setPromptText("New subject");
+        language = "en";
     }
 
     public void addChat() {
@@ -182,6 +186,7 @@ public class ChatBoxController {
         String chatName = typetextID.getText(); // Use the text from the TextField directly
         chatList.add(chatName);
         Chat chat = new Chat(chatName, chatName + " " + (chatList.size() - 1));
+        chat.setName(chatName); // Set the name of the chat
         chats.add(chat);
         chatIndex = chats.size() - 1;
         newSubjectID.setText(chatName);
@@ -198,6 +203,7 @@ public class ChatBoxController {
         }
     }
 
+
     @FXML
     public void LogOutfunction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -207,6 +213,11 @@ public class ChatBoxController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            for (Chat chat : chats) {
+                if (!chat.isLoadedFromDB() || (chat.getName() != null)) { // wordt alleen opgeslagen als het niet een geladen of ongebruikte chat is
+                    Database.insertChatMessage(chat);
+                }
+            }
             chats.clear();
             chatList.clear();
             textAreaID.clear();
@@ -221,6 +232,25 @@ public class ChatBoxController {
             LoggedInUser.getInstance().setUser(null);
         } else {
             alert.close();
+        }
+    }
+
+
+
+    public void loadChatsForLoggedInUser() {
+        String username = LoggedInUser.getInstance().getUser().getUsername();
+
+        // Clear the existing chats and chat list
+        chats.clear();
+        chatList.clear();
+
+        // Load the user's chats
+        List<Chat> userChats = Database.selectAllChatMessages(username); // Pass the username
+        chats.addAll(userChats);
+
+        // Update the ListView with the user's chats
+        for (Chat chat : userChats) {
+            chatList.add(chat.getName());
         }
     }
 }
