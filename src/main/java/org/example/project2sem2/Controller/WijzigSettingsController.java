@@ -74,7 +74,17 @@ public class WijzigSettingsController {
                     loggedInUser.setEmail(newEmail);
                 }
                 if (!newUsername.isEmpty()) {
-                    loggedInUser.setUsername(newUsername);
+                    // Check if the new username already exists in the database
+                    if (Database.getUser(newUsername) != null) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Aanmeld Fout");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("Gebruikersnaam bestaat al, kies een andere");
+                        errorAlert.showAndWait();
+                        return; // Exit the method early
+                    } else {
+                        loggedInUser.setUsername(newUsername);
+                    }
                 }
                 if (!newPassword.isEmpty()) {
                     loggedInUser.setPassword(newPassword);
@@ -90,7 +100,7 @@ public class WijzigSettingsController {
             }
         }
     }
-    //test commit voor bevestiging
+
     @FXML
     private void handleBackButton(MouseEvent event) {
         try {
