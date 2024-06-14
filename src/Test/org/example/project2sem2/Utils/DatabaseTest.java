@@ -100,3 +100,5 @@ class DatabaseTest {
         assertNull(user, "getUser should return null for a deleted user.");
     }
 }
+
+//waar is de andere test
