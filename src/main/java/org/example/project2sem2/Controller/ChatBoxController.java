@@ -214,7 +214,7 @@ public class ChatBoxController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             for (Chat chat : chats) {
-                if (!chat.isLoadedFromDB()) {
+                if (!chat.isLoadedFromDB() && !chat.getHistory().isEmpty()){
                     Database.insertChatMessage(chat);
                 }
             }
