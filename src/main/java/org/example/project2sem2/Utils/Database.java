@@ -1,7 +1,6 @@
 package org.example.project2sem2.Utils;
 
 import org.example.project2sem2.Model.User;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,7 +37,7 @@ public class Database {
     }
 
     // Method to execute login query and return User
-    public static void login(String username, String password) {
+    public static boolean login(String username, String password) {
         String query = "SELECT * FROM credentials WHERE username = ? AND password = ?";
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -49,15 +48,16 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     String email = resultSet.getString("email");
-                    // Instead of returning the User object directly, create it here
                     User user = new User(username, password, email);
                     LoggedInUser.getInstance().setUser(user);
+                    return true;
                 }
             }
 
         } catch (SQLException e) {
             e.printStackTrace(); // Log the exception properly in real scenarios
         }
+        return false;
     }
 
 
@@ -81,14 +81,43 @@ public class Database {
     }
 
     // Method to update user details
-    public static boolean updateUser(User user) {
-        String query = "UPDATE credentials SET password = ?, email = ? WHERE username = ?";
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+    public static boolean updateUser(User user, String oldUsername) {
+        StringBuilder query = new StringBuilder("UPDATE credentials SET ");
+        boolean isPasswordChanged = user.getPassword() != null && !user.getPassword().isEmpty();
+        boolean isEmailChanged = user.getEmail() != null && !user.getEmail().isEmpty();
+        boolean isUsernameChanged = user.getUsername() != null && !user.getUsername().isEmpty();
 
-            preparedStatement.setString(1, user.getPassword());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getUsername());
+        if (isPasswordChanged) {
+            query.append("password = ?");
+        }
+        if (isEmailChanged) {
+            if (isPasswordChanged) {
+                query.append(", ");
+            }
+            query.append("email = ?");
+        }
+        if (isUsernameChanged) {
+            if (isPasswordChanged || isEmailChanged) {
+                query.append(", ");
+            }
+            query.append("username = ?");
+        }
+        query.append(" WHERE username = ?");
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query.toString())) {
+
+            int index = 1;
+            if (isPasswordChanged) {
+                preparedStatement.setString(index++, user.getPassword());
+            }
+            if (isEmailChanged) {
+                preparedStatement.setString(index++, user.getEmail());
+            }
+            if (isUsernameChanged) {
+                preparedStatement.setString(index++, user.getUsername());
+            }
+            preparedStatement.setString(index, oldUsername);
 
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;

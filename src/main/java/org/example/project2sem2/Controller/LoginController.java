@@ -1,23 +1,15 @@
 package org.example.project2sem2.Controller;
 
-import org.example.project2sem2.Model.User;
+import javafx.scene.control.Alert;
 import org.example.project2sem2.Utils.Database;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.example.project2sem2.Utils.LoggedInUser;
 import org.example.project2sem2.Utils.SceneSwitcher;
 
 public class LoginController {
-
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button naarSignUp;
 
     @FXML
     private PasswordField passwordField;
@@ -30,20 +22,21 @@ public class LoginController {
         String password = passwordField.getText();
         String username = usernameField.getText();
 
-        Database.login(username, password);
+        boolean loginSuccessful = Database.login(username, password);
 
-        // If login is successful, create the singleton user instance
-        if (LoggedInUser.getInstance() != null) {
+        if (loginSuccessful) {
             SceneSwitcher.switchScene(event, "chat-box.fxml");
         } else {
-            // Handle unsuccessful login, display an error message, etc.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Fout");
+            alert.setHeaderText(null);
+            alert.setContentText("kon niet inloggen, probeer opnieuw");
+            alert.showAndWait();
         }
     }
-
 
     @FXML
     void switchToSignup(ActionEvent event) {
         SceneSwitcher.switchScene(event, "sign-up.fxml");
     }
-
 }
