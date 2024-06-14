@@ -23,7 +23,7 @@ public class SearchEngine {
     }
 
     public String findKey(String question) {
-        String[] keys = {"java", "python", "language", "social-platform-application", "financial-system", "domain-model"};
+        String[] keys = {"java", "python", "language", "social platform application", "financial system", "domain model"};
         for (String key : keys) {
             if (question.contains(key)) {
                 return key;
@@ -33,7 +33,7 @@ public class SearchEngine {
     }
 
     public List<String> getKeys() {
-        return Arrays.asList("java", "python", "language", "social-platform-application", "financial-system", "domain-model");
+        return Arrays.asList("java", "python", "language", "social platform application", "financial system", "domain model");
     }
 
     public String findAnswer(String question, String languageCode) {

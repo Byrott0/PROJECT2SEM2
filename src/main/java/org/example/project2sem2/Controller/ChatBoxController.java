@@ -103,13 +103,10 @@ public class ChatBoxController {
     }
 
     public void initialize() {
-        // Set the default language to Dutch
         setDutch();
 
-        // Initialize the ObservableList for the ListView
         chatList = listviewID.getItems();
 
-        // Load chats for the logged-in user
         loadChatsForLoggedInUser();
 
         addChat();
@@ -123,10 +120,10 @@ public class ChatBoxController {
 
         this.searchEngine = new SearchEngine();
 
-        // Get the keywords from the SearchEngine instance
+
         List<String> keywords = searchEngine.getKeys();
 
-        // Add a listener to the TextField
+
         typetextID.textProperty().addListener((observable, oldValue, newValue) -> {
             for (String keyword : keywords) {
                 if (newValue.contains(keyword)) {
@@ -144,7 +141,6 @@ public class ChatBoxController {
             }
         });
     }
-
 
 
     private void setLoggedInUserText(String prefix) {
@@ -212,9 +208,9 @@ public class ChatBoxController {
         alert.setContentText("Weet u zeker dat u wilt uitloggen?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             for (Chat chat : chats) {
-                if (!chat.isLoadedFromDB() && !chat.getHistory().isEmpty()){
+                if (!chat.isLoadedFromDB() && chat.getName().isEmpty()) {
                     Database.insertChatMessage(chat);
                 }
             }
@@ -236,7 +232,6 @@ public class ChatBoxController {
     }
 
 
-
     public void loadChatsForLoggedInUser() {
         String username = LoggedInUser.getInstance().getUser().getUsername();
 
@@ -250,7 +245,9 @@ public class ChatBoxController {
 
         // Update the ListView with the user's chats
         for (Chat chat : userChats) {
-            chatList.add(chat.getName());
+            if (!chat.getName().isEmpty()) {
+                chatList.add(chat.getName());
+            }
         }
     }
 }
