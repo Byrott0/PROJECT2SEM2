@@ -2,6 +2,7 @@ package org.example.project2sem2.Utils;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SearchEngineTest {
@@ -26,9 +27,9 @@ class SearchEngineTest {
     }
 
     @Test
-    void findKey_NotExist() {
+    void findKey_NoKeyword_ReturnsNull() {
         // Arrange
-        String question = "How is the weather today?"; // Geen van de sleutelwoorden komt hierin voor
+        String question = "How is the weather today?"; // No keywords present
 
         // Act
         String result = searchEngine.findKey(question);
@@ -36,7 +37,6 @@ class SearchEngineTest {
         // Assert
         assertNull(result, "The method should return null as the question contains no keywords.");
     }
-
 
     @Test
     void findAnswer_WithPythonKeyword_ReturnsPythonResponse() {
@@ -93,34 +93,33 @@ class SearchEngineTest {
 
         Testframeworks:
 
-        Python-ontwikkelaars gebruiken testframeworks zoals pytest, unittest en doctest om tests voor hun code te schrijven en uit te voeren. Deze raamwerken helpen bij het waarborgen van de kwaliteit van de code, het identificeren van bugs en het vergemakkelijken van code-onderhoud.        """;
+        Python-ontwikkelaars gebruiken testframeworks zoals pytest, unittest en doctest om tests voor hun code te schrijven en uit te voeren. Deze raamwerken helpen bij het waarborgen van de kwaliteit van de code, het identificeren van bugs en het vergemakkelijken van code-onderhoud.""";
 
         // Act
-        String result = searchEngine.findAnswer(question);
+        String result = searchEngine.findAnswer(question, "nl");
 
         // Assert
         assertNotNull(result, "A response for 'python' should be available.");
         assertEquals(expectedResponse, result, "The response should contain expected Python content.");
     }
 
-
-
     @Test
     void findAnswer_NoMatchingKeyword_ReturnsNoDataFoundMessage() {
         // Arrange
         String question = "What is the weather today?";
+        String expectedResponse = "No data found for: What is the weather today?";
 
         // Act
-        String result = searchEngine.findAnswer(question);
+        String result = searchEngine.findAnswer(question, "en");
 
         // Assert
-        assertEquals("Geen data gevonden voor: " + question, result, "A message indicating no data found should be returned.");
+        assertEquals(expectedResponse, result, "A message indicating no data found should be returned.");
     }
 
     @Test
     void getResponse_ValidKeywordQuery_ReturnsCorrectResponse() {
         // Arrange
-        String input = "Tell me about financial-system";
+        String input = "Tell me about financial system";
         String expectedResponse = """
         Financieel systeem:
 
@@ -180,22 +179,22 @@ class SearchEngineTest {
         """;
 
         // Act
-        String actualResponse = searchEngine.getResponse(input);
+        String actualResponse = searchEngine.getResponse(input, "nl");
 
         // Assert
-        assertEquals(expectedResponse.trim(), actualResponse.trim(), "The response should correctly match the expected content for 'financial-system'.");
-
+        assertEquals(expectedResponse.trim(), actualResponse.trim(), "The response should correctly match the expected content for 'financial system'.");
     }
 
     @Test
     void getResponse_NoKeywordQuery_ReturnsNoDataFoundMessage() {
         // Arrange
         String input = "How many countries are in Europe?";
+        String expectedResponse = "No data found for: How many countries are in Europe?";
 
         // Act
-        String result = searchEngine.getResponse(input);
+        String result = searchEngine.getResponse(input, "en");
 
         // Assert
-        assertEquals("Geen data gevonden voor: " + input, result, "A message indicating no data found should be returned for input without a known keyword.");
+        assertEquals(expectedResponse, result, "A message indicating no data found should be returned for input without a known keyword.");
     }
 }
