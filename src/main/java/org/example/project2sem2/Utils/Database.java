@@ -12,9 +12,9 @@ import java.util.List;
 
 public class Database {
 
-    private static final String URL = "jdbc:mysql://sqldatabase.mysql.database.azure.com:3306/project";
-    private static final String USER = "AdminH";
-    private static final String PASSWORD = "Haagsegoon?";
+    private static final String URL = "jdbc:mysql://localhost:3306/project";
+    private static final String USER = "root";
+    private static final String PASSWORD = "Haagse";
 
     // Private constructor to prevent instantiation
     private Database() {
