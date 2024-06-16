@@ -15,6 +15,44 @@ class SearchEngineTest {
     }
 
     @Test
+    void testValidSearchQuery() {
+        // Test een geldige zoekopdracht
+        assertTrue(searchEngine.search("java").size() > 0);
+    }
+
+    @Test
+    void testEmptySearchQuery() {
+        assertTrue(searchEngine.search("").isEmpty());
+    }
+
+    @Test
+    void testSearchWithSpecialCharacters() {
+        assertTrue(searchEngine.search("@#$%").isEmpty());
+    }
+
+    // Multiple Condition Coverage (MC)
+    @Test
+    void testSearchWithMultipleConditions() {
+        assertTrue(searchEngine.search("java").size() > 0); // Valid query
+        assertTrue(searchEngine.search("").isEmpty()); // Empty query
+        assertTrue(searchEngine.search("java @#$%").isEmpty()); // Valid query with special characters
+        assertTrue(searchEngine.search("@#$% java").isEmpty()); // Special characters in valid query
+    }
+
+    // Decision Coverage (DC)
+    @Test
+    void testFindKey() {
+        // Each condition in the findKey method
+        assertEquals("java", searchEngine.findKey("How to program in java?"));
+        assertEquals("python", searchEngine.findKey("What's new in python?"));
+        assertEquals("language", searchEngine.findKey("What is a programming language?"));
+        assertEquals("social platform application", searchEngine.findKey("How to build a social platform application?"));
+        assertEquals("financial system", searchEngine.findKey("Tell me about the financial system"));
+        assertEquals("domain model", searchEngine.findKey("Explain the domain model"));
+        assertNull(searchEngine.findKey("How is the weather today?")); // No keyword
+    }
+
+    @Test
     void findKey_WithJavaKeyword_ReturnsJava() {
         // Arrange
         String question = "How to program in java?";

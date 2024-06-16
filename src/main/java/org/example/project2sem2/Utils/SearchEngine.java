@@ -11,7 +11,7 @@ public class SearchEngine {
     }
 
     private void loadKeywordResponses() {
-        String[] keys = {"java", "python", "language", "social platform application", "financial system", "domain model"}; //"wat is de antwoord op de vraag"
+        String[] keys = {"java", "python", "language", "social platform application", "financial system", "domain model"};
         FileProcessor fileProcessor = new FileProcessor();
 
         for (String key : keys) {
@@ -20,6 +20,20 @@ public class SearchEngine {
             responses.put("en", fileProcessor.loadDataFromFile("src/main/resources/files/" + key + "(en).txt"));
             keywordResponses.put(key, responses);
         }
+    }
+
+    public List<String> search(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return Collections.emptyList();
+        }
+        // A simple search implementation that returns a list of matching keys
+        List<String> results = new ArrayList<>();
+        for (String key : keywordResponses.keySet()) {
+            if (key.contains(query.toLowerCase())) {
+                results.add(key);
+            }
+        }
+        return results;
     }
 
     public String findKey(String question) {
