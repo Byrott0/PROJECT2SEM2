@@ -30,9 +30,6 @@ public class Chatbot implements SetObserver {
         this.typetextID = typetextID;
     }
 
-    public void processText() {
-        chatBoxController.checkText();
-    }
 
     @Override
     public void update(String info) {

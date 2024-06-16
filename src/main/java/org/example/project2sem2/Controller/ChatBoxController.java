@@ -53,7 +53,7 @@ public class ChatBoxController{
     private ArrayList<Chat> chats = new ArrayList<>();
     private ObservableList<String> chatList;
 
-    private String language;
+    public String language;
 
     private int chatIndex = 0;
 
@@ -111,7 +111,7 @@ public class ChatBoxController{
         chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Pass the typetextID to the Chatbot class
         typetextID.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                chatbot.processText();
+                checkText();
             }
         });
 
