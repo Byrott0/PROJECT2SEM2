@@ -9,7 +9,7 @@ public class LoggedInUser {
     private LoggedInUser() {
         // Private constructor to prevent instantiation from outside
     }
-
+//
     public static LoggedInUser getInstance() {
         if (instance == null) {
             instance = new LoggedInUser();
