@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parentID" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.project2sem2.Controller.ChatBoxController">
+   <children>
+      <Label fx:id="NameID" layoutX="93.0" layoutY="10.0" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+
+      <ListView fx:id="listviewID" layoutX="5.0" layoutY="70.0" prefWidth="106.0" style="-fx-background-color: #dae7ed;" AnchorPane.bottomAnchor="61.200000000000045" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="70.0" />
+
+      <Button fx:id="chatlistID" layoutX="5.0" layoutY="44.0" onAction="#addChat" prefWidth="106.0" text="Voeg Chat" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="44.0" />
+
+      <TextField fx:id="typetextID" layoutX="120.0" layoutY="547.0" prefHeight="34.0" prefWidth="650.0" promptText="Stel uw vraag" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextArea fx:id="textAreaID" editable="false" promptText="Hier komt uw gesprek te staan." wrapText="true" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="69.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextArea>
+
+      <MenuButton fx:id="instellingenID" layoutX="636.0" layoutY="16.0" minWidth="80.0" prefHeight="38.0" prefWidth="134.0" text="Instellingen" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="16.0">
+         <items>
+            <Menu fx:id="languageMenuID" mnemonicParsing="false" text="Taal">
+               <items>
+                  <MenuItem fx:id="dutchID" mnemonicParsing="false" onAction="#setDutch" text="Nederlands" />
+                  <MenuItem fx:id="englishID" mnemonicParsing="false" onAction="#setEnglish" text="English" />
+               </items>
+            </Menu>
+            <MenuItem fx:id="wijzigenID" mnemonicParsing="false" onAction="#switchToWijzigSettings" text="Wijzigen" />
+            <MenuItem fx:id="uitloggenID" mnemonicParsing="false" onAction="#LogOutfunction" text="Uitloggen" />
+         </items>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </MenuButton>
+      <ImageView fitHeight="61.0" fitWidth="69.0" layoutX="28.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/image__2_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="NameID1" layoutX="365.0" layoutY="31.0" prefHeight="34.0" prefWidth="265.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="newSubjectID" layoutX="120.0" layoutY="31.0" prefHeight="34.0" prefWidth="190.0" />
+      <Button fx:id="changeSubjectButtonID" layoutX="318.0" layoutY="31.0" onAction="#changeSubject" prefHeight="34.0" prefWidth="40.0" text="&gt;" />
+   </children>
+</AnchorPane>
