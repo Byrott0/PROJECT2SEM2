@@ -21,9 +21,10 @@ public class SearchEngine {
         FileProcessor fileProcessor = new FileProcessor();
 
         for (String key : keys) {
-            Map<String, String> responses = new HashMap<>();//madikh notes
-            responses.put("nl", fileProcessor.loadDataFromFile("src/main/resources/files/" + key + "(nl).txt"));
-            responses.put("en", fileProcessor.loadDataFromFile("src/main/resources/files/" + key + "(en).txt"));
+            Map<String, String> responses = new HashMap<>();
+            responses.put(languageCode, fileProcessor.loadDataFromFile("src/main/resources/files/" + languageCode + "/"+ key + ".txt"));
+            System.out.println(languageCode + ": " + fileProcessor.loadDataFromFile("src/main/resources/files/" + languageCode + "/"+ key + ".txt"));
+
             keywordResponses.put(key, responses);
         }
     }

@@ -1,0 +1,114 @@
+
+Financieel systeem:
+
+Deze module bevat de kernfunctionaliteiten van onze financiële systeemapplicatie. Het verzorgt gebruikersauthenticatie, profielbeheer, transactieverwerking, accountbeheer en rapportage.
+
+Klassen:
+
+UserAuthentication:
+
+Verwerkt gebruikersauthenticatie en autorisatie. Beheert gebruikerssessies en tokens voor veilige toegang tot het systeem.
+
+UserProfile:
+
+Verantwoordelijk voor het beheer van gebruikersprofielen. Slaat gebruikersinformatie op en haalt deze op, zoals naam, contactgegevens en accountvoorkeuren.
+
+TransactionProcessing:
+
+Beheert de verwerking van financiële transacties zoals stortingen, opnames, overboekingen en betalingen. Garandeert de integriteit en veiligheid van transacties.
+
+Accountbeheer:
+
+Beheert gebruikersaccounts, inclusief het aanmaken, bijwerken en verwijderen. Verwerkt rekeningsaldi, transactiegeschiedenis en accountrechten.
+
+Rapportage:
+
+genereert rapporten en analyses over de financiële activiteiten van gebruikers, rekeningsamenvattingen en trends. Biedt inzichten voor besluitvorming en naleving van regelgeving.
+
+Database:
+
+De databasemodule beheert het opslaan en ophalen van financiële gegevens voor het systeem. Het maakt gebruik van een relationeel databasebeheersysteem (RDBMS) om gestructureerde gegevens efficiënt op te slaan.
+
+Tabellen:
+
+Gebruikers:
+
+slaat gebruikersaccountinformatie op, zoals gebruikersnaam, e-mailadres, wachtwoord-hash en profielgegevens.
+
+Rekeningen:
+
+Bevat financiële rekeningen van gebruikers, waaronder spaargeld, cheques, beleggingen en leningen.
+
+Transacties:
+
+slaat transactierecords op, inclusief type, bedrag, tijdstempel en bijbehorende account-ID's.
+
+Machtigingen:
+
+Beheert toegangscontrole en machtigingen voor gebruikers en systeembeheerders.
+
+AuditTrail:
+
+registreert systeemactiviteiten en wijzigingen voor audit- en compliancedoeleinden.
+
+Meldingen:
+
+slaat door het systeem gegenereerde meldingen op voor gebruikersactiviteiten zoals transacties, accountupdates en beveiligingswaarschuwingen.
+
+
+
+Sociale platformtoepassing:
+
+Deze module bevat de kernfunctionaliteiten van onze sociale platformapplicatie. Het zorgt voor gebruikersauthenticatie, profielbeheer, het maken van inhoud, interactiefuncties zoals vind-ik-leuks, opmerkingen en delen, evenals meldingen.
+
+Klassen:
+
+UserAuthentication:
+
+Verwerkt gebruikersauthenticatie en autorisatie. Beheert gebruikerssessies en tokens voor veilige toegang tot het platform.
+
+UserProfile:
+
+Verantwoordelijk voor het beheer van gebruikersprofielen. Slaat gebruikersinformatie op en haalt deze op, zoals naam, biografie, profielfoto en contactgegevens.
+
+ContentManagement:
+
+beheert het maken, bewerken en verwijderen van door gebruikers gegenereerde inhoud (UGC). Biedt functionaliteit voor gebruikers om tekst, afbeeldingen, video's en andere multimedia-inhoud te plaatsen.
+
+Interactie:
+
+Verwerkt gebruikersinteracties met het platform, inclusief functies zoals vind-ik-leuks, reacties, delen en direct messaging. Faciliteert de betrokkenheid tussen gebruikers.
+
+Meldingssysteem:
+
+verantwoordelijk voor het verzenden van meldingen naar gebruikers voor evenementen zoals vind-ik-leuks, reacties, nieuwe volgers en vermeldingen. Hiermee kunnen gebruikers op de hoogte blijven van relevante activiteiten op het platform.
+
+Database:
+
+De databasemodule beheert de opslag en het ophalen van gegevens voor de sociale platformapplicatie. Het maakt gebruik van een relationeel databasebeheersysteem (RDBMS) om gestructureerde gegevens efficiënt op te slaan.
+
+Tabellen:
+
+Gebruikers:
+
+slaat gebruikersaccountinformatie op, zoals gebruikersnaam, e-mailadres, wachtwoord-hash en profielgegevens.
+
+Posts:
+
+Bevat door gebruikers gegenereerde inhoudsposts, waaronder tekst, afbeeldingen, video's en bijbehorende metagegevens zoals tijdstempels, vind-ik-leuks, reacties en gedeelde berichten.
+
+Opmerkingen:
+
+slaat opmerkingen van gebruikers op berichten op. Elke opmerking is gekoppeld aan een specifiek bericht en een specifieke gebruiker, samen met tijdstempels.
+
+Likes:
+
+Houdt de likes bij die gebruikers aan berichten of reacties geven. Elke like-inzending bevat de ID van het gelikete item en de ID van de gebruiker die het leuk vond.
+
+Volgers:
+
+Onderhoudt de relaties tussen gebruikers voor de functionaliteit voor het volgen van volgers. Registreert wie wie volgt op het platform.
+
+Meldingen:
+
+slaat door het systeem gegenereerde meldingen op voor gebruikersactiviteiten zoals vind-ik-leuks, reacties, nieuwe volgers en vermeldingen.
