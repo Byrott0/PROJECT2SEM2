@@ -53,7 +53,7 @@ public class ChatBoxController{
     private ArrayList<Chat> chats = new ArrayList<>();
     private ObservableList<String> chatList;
 
-    public String language;
+    public String language = "nl";
 
     private int chatIndex = 0;
 
@@ -66,12 +66,16 @@ public class ChatBoxController{
         this.loggedInUser = loggedInUser;
     }
 
+    public ChatBoxController() {
+
+    }
+
     public void checkText() {
         if (!chats.isEmpty()) {
             Chat chat = chats.get(chatIndex);
             String userQuestion = typetextID.getText();
             textAreaID.appendText("\nQ: " + userQuestion); // Voeg de vraag toe aan de TextArea
-            String botAnswer = searchEngine.findAnswer(userQuestion, language);
+            String botAnswer = searchEngine.findAnswer(userQuestion);
             textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());
@@ -149,6 +153,7 @@ public class ChatBoxController{
 
     @FXML
     public void setDutch() {
+        language = "nl";
         chatlistID.setText("Chatlijst");
         textAreaID.setPromptText("Hier komt uw gesprek te staan.");
         typetextID.setPromptText("Stel uw vraag.");
@@ -156,8 +161,6 @@ public class ChatBoxController{
         uitloggenID.setText("Uitloggen");
         setLoggedInUserText("Ingelogd als: ");
         newSubjectID.setPromptText("Nieuw onderwerp");
-        language = "nl";
-
     }
 
     @FXML
@@ -169,8 +172,9 @@ public class ChatBoxController{
         uitloggenID.setText("Logout");
         setLoggedInUserText("Logged in as: ");
         newSubjectID.setPromptText("New subject");
-        language = "en";
-
+        language = "uk";
+        System.out.println("Language set to English");
+        searchEngine.setLanguagecode(language);
     }
 
     public void addChat() {
@@ -249,5 +253,9 @@ public class ChatBoxController{
                 chatList.add(chat.getName());
             }
         }
+    }
+
+    public String getLanguage() {
+        return language;
     }
 }

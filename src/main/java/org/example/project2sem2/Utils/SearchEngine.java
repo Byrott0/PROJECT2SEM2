@@ -1,9 +1,15 @@
 package org.example.project2sem2.Utils;
 
+import org.example.project2sem2.Controller.ChatBoxController;
+
 import java.util.*;
 
 public class SearchEngine {
     private Map<String, Map<String, String>> keywordResponses;
+
+    ChatBoxController chatboxcontroller = new ChatBoxController();
+    private String languageCode = chatboxcontroller.getLanguage();
+
 
     public SearchEngine() {
         keywordResponses = new HashMap<>();
@@ -50,7 +56,7 @@ public class SearchEngine {
         return Arrays.asList("java", "python", "language", "social platform application", "financial system", "domain model");
     }
 
-    public String findAnswer(String question, String languageCode) {
+    public String findAnswer(String question) {
         String key = findKey(question);
         if (key != null) {
             Map<String, String> languageResponses = keywordResponses.get(key);
@@ -65,7 +71,7 @@ public class SearchEngine {
         }
     }
 
-    public String getResponse(String input, String languageCode) {
+    public String getResponse(String input) {
         String key = findKey(input);
         if (key != null) {
             Map<String, String> languageResponses = keywordResponses.get(key);
@@ -73,6 +79,14 @@ public class SearchEngine {
                 return languageResponses.get(languageCode);
             }
         }
-        return findAnswer(input, languageCode);
+        return findAnswer(input);
+    }
+
+    public void setLanguagecode(String languagecode) {
+        this.languageCode = languagecode;
+    }
+
+    public String getLanguagecode() {
+        return languageCode;
     }
 }
