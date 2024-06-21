@@ -10,11 +10,8 @@ import java.util.List;
 public class Chatbot implements SetObserver {
     private Chat chat;
     private ChatBoxController chatBoxController;
-    private TextField textfield;
     private TextField typetextID;
-    private int chatIndex;
     private List<Chat> chats;
-    private List<String> chatList;
     private TextArea textAreaID;
     private SearchEngine searchEngine;
 
