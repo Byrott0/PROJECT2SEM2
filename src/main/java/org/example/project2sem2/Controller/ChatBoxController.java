@@ -53,7 +53,7 @@ public class ChatBoxController{
     private ArrayList<Chat> chats = new ArrayList<>();
     private ObservableList<String> chatList;
 
-    public String language = "nl";
+    public Languages language = Languages.NL;
 
     private int chatIndex = 0;
 
@@ -153,7 +153,7 @@ public class ChatBoxController{
 
     @FXML
     public void setDutch() {
-        language = "nl";
+        language = Languages.NL;
         chatlistID.setText("Chatlijst");
         textAreaID.setPromptText("Hier komt uw gesprek te staan.");
         typetextID.setPromptText("Stel uw vraag.");
@@ -172,7 +172,7 @@ public class ChatBoxController{
         uitloggenID.setText("Logout");
         setLoggedInUserText("Logged in as: ");
         newSubjectID.setPromptText("New subject");
-        language = "uk";
+        language = Languages.UK;
         System.out.println("Language set to English");
         searchEngine.setLanguagecode(language);
     }
@@ -255,7 +255,7 @@ public class ChatBoxController{
         }
     }
 
-    public String getLanguage() {
-        return language;
+    public Languages getLanguage() {
+        return this.language;
     }
 }

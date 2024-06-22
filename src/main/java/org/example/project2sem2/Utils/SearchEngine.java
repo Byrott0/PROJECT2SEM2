@@ -8,7 +8,7 @@ public class SearchEngine {
     private Map<String, Map<String, String>> keywordResponses;
 
     ChatBoxController chatboxcontroller = new ChatBoxController();
-    private String languageCode = chatboxcontroller.getLanguage();
+    private Languages languageCode;
 
 
     public SearchEngine() {
@@ -17,13 +17,14 @@ public class SearchEngine {
     }
 
     private void loadKeywordResponses() {
+        this.languageCode = chatboxcontroller.getLanguage();
+        System.out.println("Mijn taal is: " + languageCode);
         String[] keys = {"java", "python", "language", "social platform application", "financial system", "domain model"};
         FileProcessor fileProcessor = new FileProcessor();
 
         for (String key : keys) {
             Map<String, String> responses = new HashMap<>();
-            responses.put(languageCode, fileProcessor.loadDataFromFile("src/main/resources/files/" + languageCode + "/"+ key + ".txt"));
-            System.out.println(languageCode + ": " + fileProcessor.loadDataFromFile("src/main/resources/files/" + languageCode + "/"+ key + ".txt"));
+            responses.put(languageCode.toString(), fileProcessor.loadDataFromFile("src/main/resources/files/" + languageCode + "/"+ key + ".txt"));
 
             keywordResponses.put(key, responses);
         }
@@ -58,20 +59,22 @@ public class SearchEngine {
     }
 
     public String findAnswer(String question) {
-        String key = findKey(question);
-        if (key != null) {
-            Map<String, String> languageResponses = keywordResponses.get(key);
-            if (languageResponses != null) {
-                String response = languageResponses.get(languageCode);
-                return response != null ? response : "No answer found for: " + key;
-            } else {
-                return "No data found for: " + key;
-            }
-        } else {
-            return "No data found for: " + question;
+        if (question == null || question.trim().isEmpty()) {
+            return "No data found";
         }
+
+        return findAnswerByKeyAndLanguage(question, languageCode);
     }
 
+    public String findAnswerByKeyAndLanguage(String key, Languages languageCode) {
+        if (!keywordResponses.containsKey(key)) {
+            return "";
+        }
+        String filepath = "src/main/resources/files/" + languageCode + "/" + key + ".txt";
+        return new FileProcessor().loadDataFromFile(filepath);
+    }
+
+    // Haal als eerst alle references hierin weg en daarna de methodes, dit word niet meer gebruikt. Een map is dan ook niet meer nodig
     public String getResponse(String input) {
         String key = findKey(input);
         if (key != null) {
@@ -83,11 +86,8 @@ public class SearchEngine {
         return findAnswer(input);
     }
 
-    public void setLanguagecode(String languagecode) {
+    public void setLanguagecode(Languages languagecode) {
         this.languageCode = languagecode;
     }
 
-    public String getLanguagecode() {
-        return languageCode;
-    }
 }
