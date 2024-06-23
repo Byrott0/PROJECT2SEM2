@@ -18,7 +18,6 @@ public class SearchEngine {
 
     private void loadKeywordResponses() {
         this.languageCode = chatboxcontroller.getLanguage();
-        System.out.println("Mijn taal is: " + languageCode);
         String[] keys = {"java", "python", "language", "social platform application", "financial system", "domain model"};
         FileProcessor fileProcessor = new FileProcessor();
 

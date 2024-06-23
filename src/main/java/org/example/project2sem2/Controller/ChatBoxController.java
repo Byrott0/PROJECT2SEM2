@@ -55,7 +55,7 @@ public class ChatBoxController{
 
     public Languages language = Languages.NL;
 
-    private int chatIndex = 0;
+    private int chatIndex = 1;
 
     private Chatbot chatbot;
     private SearchEngine searchEngine;
@@ -74,16 +74,23 @@ public class ChatBoxController{
         if (!chats.isEmpty()) {
             Chat chat = chats.get(chatIndex);
             String userQuestion = typetextID.getText();
-            textAreaID.appendText("\nQ: " + userQuestion); // Voeg de vraag toe aan de TextArea
-            String botAnswer = searchEngine.findAnswer(userQuestion);
-            textAreaID.appendText("\nA: " + botAnswer); // Voeg het antwoord toe aan de TextArea
+            textAreaID.appendText("\nQ: " + userQuestion); // Add the question to the TextArea
+
+            String keyword = searchEngine.findKey(userQuestion);
+            if (keyword != null) {
+                String botAnswer = searchEngine.findAnswerByKeyAndLanguage(keyword, language);
+                textAreaID.appendText("\nA: " + botAnswer); // Add the answer to the TextArea
+            }
+
             typetextID.setText("");
             chat.setHistory(textAreaID.getText());
-
 
             String chatName = userQuestion;
             chatList.set(chatIndex, chatName);
             chat.setName(chatName);
+
+            chats.set(chatIndex, chat);
+
         }
     }
 
@@ -182,13 +189,14 @@ public class ChatBoxController{
             chats.get(chatIndex).setHistory(textAreaID.getText());
         }
         textAreaID.setText(null);
-        String chatName = typetextID.getText(); // Use the text from the TextField directly
+        String chatName = typetextID.getText();
         chatList.add(chatName);
         Chat chat = new Chat(chatName, chatName + " " + (chatList.size() - 1));
-        chat.setName(chatName); // Set the name of the chat
+        chat.setName(chatName);
         chats.add(chat);
         chatIndex = chats.size() - 1;
         newSubjectID.setText(chatName);
+
     }
 
     @FXML
@@ -216,7 +224,6 @@ public class ChatBoxController{
                 if (!chat.isLoadedFromDB()) {
                     Database.insertChatMessage(chat);
                 }
-
             }
             chats.clear();
             chatList.clear();
