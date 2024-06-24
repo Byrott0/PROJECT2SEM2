@@ -22,3 +22,5 @@
 # Maven
 log/
 target/
+# Github
+.github/
