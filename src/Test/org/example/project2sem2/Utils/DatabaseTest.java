@@ -10,7 +10,7 @@ class DatabaseTest {
 
     @BeforeAll
     static void setup() {
-        Database.deleteUser("testuser");
+        DbUserQueries.deleteUser("testuser");
     }
 
     @AfterEach
@@ -24,7 +24,7 @@ class DatabaseTest {
         User user = new User("testuser", "testpassword", "testuser@example.com");
 
         // Act
-        boolean result = Database.signup(user);
+        boolean result = DbUserQueries.signup(user);
 
         // Assert
         assertTrue(result, "Signup should return true for successful user creation.");
@@ -38,7 +38,7 @@ class DatabaseTest {
         String password = "testpassword";
 
         // Act
-        boolean result = Database.login(username, password);
+        boolean result = DbUserQueries.login(username, password);
 
         // Assert
         assertTrue(result, "Login should return true for valid credentials.");
@@ -51,7 +51,7 @@ class DatabaseTest {
         String username = "testuser";
 
         // Act
-        User user = Database.getUser(username);
+        User user = DbUserQueries.getUser(username);
 
         // Assert
         assertNotNull(user, "getUser should return a User object for an existing user.");
@@ -67,13 +67,13 @@ class DatabaseTest {
         User updatedUser = new User("testuser", "newpassword", "newemail@example.com");
 
         // Act
-        boolean result = Database.updateUser(updatedUser, "testuser");
+        boolean result = DbUserQueries.updateUser(updatedUser, "testuser");
 
         // Assert
         assertTrue(result, "updateUser should return true for a successful update.");
 
         // Act
-        User user = Database.getUser("testuser");
+        User user = DbUserQueries.getUser("testuser");
 
         // Assert
         assertNotNull(user, "getUser should return a User object for an existing user.");
@@ -88,17 +88,15 @@ class DatabaseTest {
         String username = "testuser";
 
         // Act
-        boolean result = Database.deleteUser(username);
+        boolean result = DbUserQueries.deleteUser(username);
 
         // Assert
         assertTrue(result, "deleteUser should return true for a successful deletion.");
 
         // Act
-        User user = Database.getUser(username);
+        User user = DbUserQueries.getUser(username);
 
         // Assert
         assertNull(user, "getUser should return null for a deleted user.");
     }
 }
-
-//waar is de andere test

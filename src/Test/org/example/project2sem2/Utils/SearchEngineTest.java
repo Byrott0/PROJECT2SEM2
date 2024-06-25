@@ -134,7 +134,7 @@ class SearchEngineTest {
         Python-ontwikkelaars gebruiken testframeworks zoals pytest, unittest en doctest om tests voor hun code te schrijven en uit te voeren. Deze raamwerken helpen bij het waarborgen van de kwaliteit van de code, het identificeren van bugs en het vergemakkelijken van code-onderhoud.""";
 
         // Act
-        String result = searchEngine.findAnswer(question, "nl");
+        String result = searchEngine.findAnswer(question);
 
         // Assert
         assertNotNull(result, "A response for 'python' should be available.");
@@ -148,7 +148,7 @@ class SearchEngineTest {
         String expectedResponse = "No data found for: What is the weather today?";
 
         // Act
-        String result = searchEngine.findAnswer(question, "en");
+        String result = searchEngine.findAnswer(question);
 
         // Assert
         assertEquals(expectedResponse, result, "A message indicating no data found should be returned.");
@@ -217,7 +217,7 @@ class SearchEngineTest {
         """;
 
         // Act
-        String actualResponse = searchEngine.getResponse(input, "nl");
+        String actualResponse = searchEngine.getResponse(input);
 
         // Assert
         assertEquals(expectedResponse.trim(), actualResponse.trim(), "The response should correctly match the expected content for 'financial system'.");
@@ -230,7 +230,7 @@ class SearchEngineTest {
         String expectedResponse = "No data found for: How many countries are in Europe?";
 
         // Act
-        String result = searchEngine.getResponse(input, "en");
+        String result = searchEngine.getResponse(input);
 
         // Assert
         assertEquals(expectedResponse, result, "A message indicating no data found should be returned for input without a known keyword.");

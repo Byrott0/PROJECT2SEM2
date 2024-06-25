@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.project2sem2.Model.User;
-import org.example.project2sem2.Utils.Database;
+import org.example.project2sem2.Utils.DbUserQueries;
 
 import java.io.IOException;
 
@@ -49,7 +49,7 @@ public class SignUpController {
         String password = passwordField.getText();
         String email = emailField.getText();
 
-        if (Database.getUser(username) != null) {
+        if (DbUserQueries.getUser(username) != null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Aanmeld Fout");
             alert.setHeaderText(null);
@@ -57,7 +57,7 @@ public class SignUpController {
             alert.showAndWait();
         } else {
             User user = new User(username, password, email);
-            boolean isSignedUp = Database.signup(user);
+            boolean isSignedUp = DbUserQueries.signup(user);
 
             if (isSignedUp) {
                 try {

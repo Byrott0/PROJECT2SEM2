@@ -1,12 +1,12 @@
 package org.example.project2sem2.Controller;
 
 import javafx.scene.control.Alert;
-import org.example.project2sem2.Utils.Database;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.example.project2sem2.Utils.DbUserQueries;
 import org.example.project2sem2.Utils.SceneSwitcher;
 
 public class LoginController {
@@ -22,7 +22,7 @@ public class LoginController {
         String password = passwordField.getText();
         String username = usernameField.getText();
 
-        boolean loginSuccessful = Database.login(username, password);
+        boolean loginSuccessful = DbUserQueries.login(username, password);
 
         if (loginSuccessful) {
             SceneSwitcher.switchScene(event, "chat-box.fxml");

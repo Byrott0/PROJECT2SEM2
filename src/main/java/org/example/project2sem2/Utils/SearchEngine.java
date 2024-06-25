@@ -33,7 +33,7 @@ public class SearchEngine {
         if (query == null || query.trim().isEmpty()) {
             return Collections.emptyList();
         }
-        // A simple search implementation that returns a list of matching keys
+
         List<String> results = new ArrayList<>();
         for (String key : keywordResponses.keySet()) {
             if (key.contains(query.toLowerCase())) {
@@ -59,7 +59,7 @@ public class SearchEngine {
 
     public String findAnswer(String question) {
         if (question == null || question.trim().isEmpty()) {
-            return "No data found";
+            return STR."No data found\{question}";
         }
 
         return findAnswerByKeyAndLanguage(question, languageCode);
@@ -73,7 +73,6 @@ public class SearchEngine {
         return new FileProcessor().loadDataFromFile(filepath);
     }
 
-    // Haal als eerst alle references hierin weg en daarna de methodes, dit word niet meer gebruikt. Een map is dan ook niet meer nodig
     public String getResponse(String input) {
         String key = findKey(input);
         if (key != null) {

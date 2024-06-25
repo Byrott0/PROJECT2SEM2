@@ -1,4 +1,5 @@
 package org.example.project2sem2.Controller;
+
 import javafx.event.ActionEvent;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ChatBoxController{
+public class ChatBoxController {
 
     @FXML
     private Label NameID;
@@ -55,23 +56,22 @@ public class ChatBoxController{
 
     public Languages language = Languages.NL;
 
-    private int chatIndex = 1;
+    private int chatIndex = -1;
 
     private Chatbot chatbot;
     private SearchEngine searchEngine;
 
     private User loggedInUser;
 
-    public ChatBoxController(User loggedInUser) { // Add this constructor
+    public ChatBoxController(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
 
     public ChatBoxController() {
-
     }
 
     public void checkText() {
-        if (!chats.isEmpty()) {
+        if (!chats.isEmpty() && chatIndex >= 0 && chatIndex < chats.size()) {
             Chat chat = chats.get(chatIndex);
             String userQuestion = typetextID.getText();
             textAreaID.appendText("\nQ: " + userQuestion); // Add the question to the TextArea
@@ -90,7 +90,6 @@ public class ChatBoxController{
             chat.setName(chatName);
 
             chats.set(chatIndex, chat);
-
         }
     }
 
@@ -101,10 +100,8 @@ public class ChatBoxController{
     }
 
     public void setChatSubject(String newSubject) {
-        if (!chats.isEmpty()) {
-            // Update the chat name in the chat list
+        if (!chats.isEmpty() && chatIndex >= 0 && chatIndex < chats.size()) {
             chatList.set(chatIndex, newSubject);
-            // Update the chat name in the chats
             chats.get(chatIndex).setName(newSubject);
         }
     }
@@ -112,14 +109,12 @@ public class ChatBoxController{
     public void initialize() {
         setDutch();
 
-
         chatList = listviewID.getItems();
 
         loadChatsForLoggedInUser();
 
 
-
-        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID); // Pass the typetextID to the Chatbot class
+        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID);
         typetextID.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 checkText();
@@ -128,9 +123,7 @@ public class ChatBoxController{
 
         this.searchEngine = new SearchEngine();
 
-
         List<String> keywords = searchEngine.getKeys();
-
 
         typetextID.textProperty().addListener((observable, oldValue, newValue) -> {
             for (String keyword : keywords) {
@@ -149,7 +142,6 @@ public class ChatBoxController{
             }
         });
     }
-
 
     private void setLoggedInUserText(String prefix) {
         User loggedInUser = LoggedInUser.getInstance().getUser();
@@ -190,13 +182,13 @@ public class ChatBoxController{
         }
         textAreaID.setText(null);
         String chatName = typetextID.getText();
+
         chatList.add(chatName);
         Chat chat = new Chat(chatName, chatName + " " + (chatList.size() - 1));
         chat.setName(chatName);
         chats.add(chat);
         chatIndex = chats.size() - 1;
         newSubjectID.setText(chatName);
-
     }
 
     @FXML
@@ -210,7 +202,6 @@ public class ChatBoxController{
         }
     }
 
-
     @FXML
     public void LogOutfunction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -222,7 +213,7 @@ public class ChatBoxController{
         if (result.isPresent() && result.get() == ButtonType.OK) {
             for (Chat chat : chats) {
                 if (!chat.isLoadedFromDB()) {
-                    Database.insertChatMessage(chat);
+                    DbChatQueries.insertChatMessage(chat);
                 }
             }
             chats.clear();
@@ -242,19 +233,15 @@ public class ChatBoxController{
         }
     }
 
-
     public void loadChatsForLoggedInUser() {
         String username = LoggedInUser.getInstance().getUser().getUsername();
 
-        // Clear the existing chats and chat list
         chats.clear();
         chatList.clear();
 
-        // Load the user's chats
-        List<Chat> userChats = Database.selectAllChatMessages(username); // Pass the username
+        List<Chat> userChats = DbChatQueries.selectAllChatMessages(username);
         chats.addAll(userChats);
 
-        // Update the ListView with the user's chats
         for (Chat chat : userChats) {
             if (!chat.getName().isEmpty()) {
                 chatList.add(chat.getName());
