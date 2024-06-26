@@ -6,20 +6,20 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class DatabaseTest {
+public class DatabaseTest {
 
     @BeforeAll
-    static void setup() {
+    public static void setup() {
         DbUserHandler.deleteUser("testuser");
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
     }
 
     @Test
     @Order(1)
-    void signup() {
+    public void signup() {
         // Arrange
         User user = new User("testuser", "testpassword", "testuser@example.com");
 
@@ -32,7 +32,7 @@ class DatabaseTest {
 
     @Test
     @Order(2)
-    void login() {
+    public void login() {
         // Arrange
         String username = "testuser";
         String password = "testpassword";
@@ -46,7 +46,7 @@ class DatabaseTest {
 
     @Test
     @Order(3)
-    void getUser() {
+    public void getUser() {
         // Arrange
         String username = "testuser";
 
@@ -62,7 +62,7 @@ class DatabaseTest {
 
     @Test
     @Order(4)
-    void updateUser() {
+    public void updateUser() {
         // Arrange
         User updatedUser = new User("testuser", "newpassword", "newemail@example.com");
 
@@ -83,7 +83,7 @@ class DatabaseTest {
 
     @Test
     @Order(5)
-    void deleteUser() {
+    public void deleteUser() {
         // Arrange
         String username = "testuser";
 
