@@ -10,7 +10,6 @@ public class SearchEngine {
     ChatBoxController chatboxcontroller = new ChatBoxController();
     private Languages languageCode;
 
-
     public SearchEngine() {
         keywordResponses = new HashMap<>();
         loadKeywordResponses();
@@ -18,13 +17,12 @@ public class SearchEngine {
 
     private void loadKeywordResponses() {
         this.languageCode = chatboxcontroller.getLanguage();
-        String[] keys = {"java", "python", "language", "social platform application", "financial system", "domain model"};
         FileProcessor fileProcessor = new FileProcessor();
 
-        for (String key : keys) {
+        for (Keywords keyword : Keywords.values()) {
+            String key = keyword.getKey();
             Map<String, String> responses = new HashMap<>();
-            responses.put(languageCode.toString(), fileProcessor.loadDataFromFile("src/main/resources/files/" + languageCode + "/"+ key + ".txt"));
-
+            responses.put(languageCode.toString(), fileProcessor.loadDataFromFile("src/main/resources/files/" + languageCode + "/" + key + ".txt"));
             keywordResponses.put(key, responses);
         }
     }
@@ -44,25 +42,28 @@ public class SearchEngine {
     }
 
     public String findKey(String question) {
-        String[] keys = {"java", "python", "language", "social platform application", "financial system", "domain model"};
-        for (String key : keys) {
-            if (question.contains(key)) {
-                return key;
+        for (Keywords keyword : Keywords.values()) {
+            if (question.contains(keyword.getKey())) {
+                return keyword.getKey();
             }
         }
         return null;
     }
 
     public List<String> getKeys() {
-        return Arrays.asList("java", "python", "language", "social platform application", "financial system", "domain model");
+        List<String> keys = new ArrayList<>();
+        for (Keywords keyword : Keywords.values()) {
+            keys.add(keyword.getKey());
+        }
+        return keys;
     }
 
     public String findAnswer(String question) {
         if (question == null || question.trim().isEmpty()) {
-            return STR."No data found\{question}";
+            return "No data found for the question: " + question;
         }
 
-        return findAnswerByKeyAndLanguage(question, languageCode);
+        return findAnswerByKeyAndLanguage(findKey(question), languageCode);
     }
 
     public String findAnswerByKeyAndLanguage(String key, Languages languageCode) {
@@ -87,5 +88,4 @@ public class SearchEngine {
     public void setLanguagecode(Languages languagecode) {
         this.languageCode = languagecode;
     }
-
 }
