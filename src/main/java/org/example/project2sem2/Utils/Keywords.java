@@ -1,6 +1,6 @@
 package org.example.project2sem2.Utils;
 
-public enum Keywords {
+public enum Keywords{
     JAVA("java"),
     PYTHON("python"),
     LANGUAGE("language"),

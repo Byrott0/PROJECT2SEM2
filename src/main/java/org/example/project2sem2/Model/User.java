@@ -23,7 +23,7 @@ public class User {
         this.username = username;
     }
 
-    // Getter and Setter for password
+
     public String getPassword() {
         return password;
     }
@@ -32,7 +32,6 @@ public class User {
         this.password = password;
     }
 
-    // Getter and Setter for email
     public String getEmail() {
         return email;
     }

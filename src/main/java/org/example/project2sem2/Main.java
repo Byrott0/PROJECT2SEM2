@@ -10,8 +10,6 @@ public class Main extends Application {
 
     public Main() {
     }
-    //comment
-    //nieuwe versie code hier gaan wij aan werken
 
     @Override
     public void start(Stage stage) {

@@ -23,54 +23,10 @@ public class Settings {
         return instance;
     }
 
-
-    // Getters and Setters
-    public String getCurrentEmail() {
-        return currentEmail;
-    }
-
-    public void setCurrentEmail(String currentEmail) {
-        this.currentEmail = currentEmail;
-    }
-
-    public String getCurrentUsername() {
-        return currentUsername;
-    }
-
-    public void setCurrentUsername(String currentUsername) {
-        this.currentUsername = currentUsername;
-    }
-
-    public String getCurrentPassword() {
-        return currentPassword;
-    }
-
-    public void setCurrentPassword(String currentPassword) {
-        this.currentPassword = currentPassword;
-    }
-
-    public String getNewEmail() {
-        return newEmail;
-    }
-
-
-    public String getNewUsername() {
-        return newUsername;
-    }
-
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-
     public void addObserver(SetObserver observer) {
         this.observer = observer;
     }
 
-    public String getChangeInfo() {
-        return changeInfo;
-    }
 
     protected void notifyObserver(String info) {
         this.changeInfo = info; // Store the settings change information

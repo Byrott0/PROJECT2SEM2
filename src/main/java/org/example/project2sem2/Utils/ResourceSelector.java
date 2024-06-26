@@ -5,38 +5,22 @@ import java.util.*;
 public class ResourceSelector {
     private Map<String, String> documentationResponses;
     private FileProcessor fileProcessor;
+    private Languages language;
 
-    public ResourceSelector() {
+    public ResourceSelector(Languages language) {
+        this.language = language;
         documentationResponses = new HashMap<>();
         fileProcessor = new FileProcessor();
         loadDocumentationResponses();
     }
 
     private void loadDocumentationResponses() {
-        // Load your predefined responses here
-        documentationResponses.put("java", fileProcessor.loadDataFromFile("src/main/resources/files/ResourceSelector/java.txt"));
-        documentationResponses.put("python", fileProcessor.loadDataFromFile("src/main/resources/files/ResourceSelector/python.txt"));
-        documentationResponses.put("language", fileProcessor.loadDataFromFile("src/main/resources/files/ResourceSelector/language.txt"));
-        // Add more predefined responses as needed
+        documentationResponses.put(Keywords.JAVA.getKey(), fileProcessor.loadDataFromFile("src/main/resources/files/" + language + "/" + Keywords.JAVA.getKey() + ".txt"));
+        documentationResponses.put(Keywords.PYTHON.getKey(),fileProcessor.loadDataFromFile("src/main/resources/files/" + language + "/" + Keywords.PYTHON.getKey() + ".txt"));
+        documentationResponses.put(Keywords.LANGUAGE.getKey(), fileProcessor.loadDataFromFile("src/main/resources/files/" + language + "/" + Keywords.LANGUAGE.getKey() + ".txt"));
     }
 
     public String getDocumentation(String keyword) {
         return documentationResponses.getOrDefault(keyword, "No documentation found for the provided keyword.");
-    }
-
-    public String findKey(String keyword) {
-        return documentationResponses.containsKey(keyword) ? keyword : null;
-    }
-
-    public List<String> getKeys() {
-        return new ArrayList<>(documentationResponses.keySet());
-    }
-
-    public String findAnswer(String keyword) {
-        return getDocumentation(keyword);
-    }
-
-    public Map<String, String> getResponses() {
-        return documentationResponses;
     }
 }

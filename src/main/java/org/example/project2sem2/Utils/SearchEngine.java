@@ -11,25 +11,30 @@ public class SearchEngine {
     private ResourceSelector resourceSelector;
     private ElasticSearch elasticSearch;
 
+    private String searchSelector = "ResourceSelector";
+
+    private String searchElastic = "ElasticSearch";
+
     public SearchEngine(Languages initialLanguage) {
+        this.languageCode = initialLanguage;
         keywordSources = new HashMap<>();
         keywordResponses = new HashMap<>();
-        resourceSelector = new ResourceSelector();
-        elasticSearch = new ElasticSearch();
+        resourceSelector = new ResourceSelector(this.languageCode);
+        elasticSearch = new ElasticSearch(this.languageCode);
         this.languageCode = initialLanguage;  // Set the initial language code here
         loadKeywordSources();
         loadKeywordResponses();
     }
 
+
     private void loadKeywordSources() {
         // Define the source for each keyword
-        keywordSources.put(Keywords.JAVA.getKey(), "ResourceSelector");
-        keywordSources.put(Keywords.PYTHON.getKey(), "ResourceSelector");
-        keywordSources.put(Keywords.LANGUAGE.getKey(), "ResourceSelector");
-        keywordSources.put(Keywords.SOCIAL_PLATFORM_APPLICATION.getKey(), "ElasticSearch");
-        keywordSources.put(Keywords.FINANCIAL_SYSTEM.getKey(), "ElasticSearch");
-        keywordSources.put(Keywords.DOMAIN_MODEL.getKey(), "ElasticSearch");
-        // Add more keywords and their respective sources as needed
+        keywordSources.put(Keywords.JAVA.getKey(), searchSelector);
+        keywordSources.put(Keywords.PYTHON.getKey(), searchSelector);
+        keywordSources.put(Keywords.LANGUAGE.getKey(), searchSelector);
+        keywordSources.put(Keywords.SOCIAL_PLATFORM_APPLICATION.getKey(), searchElastic);
+        keywordSources.put(Keywords.FINANCIAL_SYSTEM.getKey(), searchElastic);
+        keywordSources.put(Keywords.DOMAIN_MODEL.getKey(), searchElastic);
     }
 
     private void loadKeywordResponses() {
@@ -48,45 +53,41 @@ public class SearchEngine {
             return Collections.emptyList();
         }
 
-        String source = keywordSources.get(query);
-        if (source == null) {
-            return Collections.singletonList("No documentation found for the provided keyword.");
-        }
-
         List<String> results = new ArrayList<>();
-        String response;
 
-        switch (source) {
-            case "ResourceSelector":
-                response = resourceSelector.getDocumentation(query);
-                break;
-            case "ElasticSearch":
-                response = elasticSearch.searchDocumentation(query);
-                break;
-            default:
-                response = "No documentation found for the provided keyword.";
+        for (String keyword : keywordSources.keySet()) {
+            if (query.contains(keyword)) {
+                String source = keywordSources.get(keyword);
+                String response;
+
+                switch (source) {
+                    case "ResourceSelector":
+                        response = resourceSelector.getDocumentation(keyword);
+                        break;
+                    case "ElasticSearch":
+                        response = elasticSearch.searchDocumentation(keyword);
+                        break;
+                    default:
+                        response = "No documentation found for the provided keyword.";
+                }
+
+                if (!response.contains("No documentation found")) {
+                    results.add(response);
+                }
+            }
         }
 
-        if (!response.contains("No documentation found")) {
-            results.add(loadResponseFromFile(query, source));
-        } else {
-            results.add(response);
+        if (results.isEmpty()) {
+            results.add("No documentation found for the provided query.");
         }
 
         return results;
     }
 
-    private String loadResponseFromFile(String keyword, String source) {
-        String filePath = "src/main/resources/files/" + languageCode + "/" + source + "/" + keyword + ".txt";
-        try {
-            return new String(Files.readAllBytes(Paths.get(filePath)));
-        } catch (IOException e) {
-            return "Error loading file: " + filePath;
-        }
-    }
-
     public void setLanguagecode(Languages language) {
         this.languageCode = language;
+        resourceSelector = new ResourceSelector(this.languageCode);
+        elasticSearch = new ElasticSearch(this.languageCode);
         loadKeywordResponses(); // Reload responses for the new language
     }
 

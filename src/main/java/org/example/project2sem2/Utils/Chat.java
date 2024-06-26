@@ -40,21 +40,11 @@ public class Chat {
         this.name = name;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public boolean isLoadedFromDB() {
         return loadedFromDB;
     }
 
-    public void setLoadedFromDB(boolean loadedFromDB) {
-        this.loadedFromDB = loadedFromDB;
-    }
 
     @Override
     public String toString() {

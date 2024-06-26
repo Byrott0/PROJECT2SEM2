@@ -107,7 +107,6 @@ public class ChatBoxController {
     }
 
     public void initialize() {
-        setDutch();
 
         chatList = listviewID.getItems();
 
