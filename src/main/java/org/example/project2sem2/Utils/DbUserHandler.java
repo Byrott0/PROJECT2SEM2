@@ -1,6 +1,5 @@
 package org.example.project2sem2.Utils;
 
-
 import org.example.project2sem2.Model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,14 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DbUserQueries {
+public class DbUserHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(DbUserQueries.class);
+    private static final Logger logger = LoggerFactory.getLogger(DbUserHandler.class);
+    private static final MySQLAdapter databaseAdapter = new MySQLAdapter();
 
 
-    public static boolean login(String username, String password) {
+    public  static boolean login(String username, String password) {
         String query = "SELECT * FROM credentials WHERE username = ? AND password = ?";
-        try (Connection connection = DbConnection.getConnection();
+        try (Connection connection = databaseAdapter.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, username);
@@ -38,10 +38,9 @@ public class DbUserQueries {
         return false;
     }
 
-
     public static boolean signup(User user) {
         String query = "INSERT INTO credentials (username, password, email) VALUES (?, ?, ?)";
-        try (Connection connection = DbConnection.getConnection();
+        try (Connection connection = databaseAdapter.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, user.getUsername());
@@ -56,7 +55,6 @@ public class DbUserQueries {
             return false;
         }
     }
-
 
     public static boolean updateUser(User user, String oldUsername) {
         StringBuilder query = new StringBuilder("UPDATE credentials SET ");
@@ -81,7 +79,7 @@ public class DbUserQueries {
         }
         query.append(" WHERE username = ?");
 
-        try (Connection connection = DbConnection.getConnection();
+        try (Connection connection = databaseAdapter.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query.toString())) {
 
             int index = 1;
@@ -105,10 +103,9 @@ public class DbUserQueries {
         }
     }
 
-    // Method to fetch a user by username
     public static User getUser(String username) {
         String query = "SELECT * FROM credentials WHERE username = ?";
-        try (Connection connection = DbConnection.getConnection();
+        try (Connection connection = databaseAdapter.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, username);
@@ -126,9 +123,10 @@ public class DbUserQueries {
         }
         return null;
     }
+
     public static boolean deleteUser(String username) {
         String query = "DELETE FROM credentials WHERE username = ?";
-        try (Connection connection = DbConnection.getConnection();
+        try (Connection connection = databaseAdapter.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, username);
@@ -137,7 +135,7 @@ public class DbUserQueries {
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-               logger.error("Error deleting user", e);
+            logger.error("Error deleting user", e);
             return false;
         }
     }

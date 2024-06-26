@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.example.project2sem2.Model.Settings;
 import org.example.project2sem2.Model.User;
-import org.example.project2sem2.Utils.DbUserQueries;
+import org.example.project2sem2.Utils.DbUserHandler;
 import org.example.project2sem2.Utils.LoggedInUser;
 import org.example.project2sem2.Utils.SetObserver;
 
@@ -99,7 +99,7 @@ public class WijzigSettingsController implements SetObserver {
                 }
                 if (!newUsername.isEmpty()) {
                     // Check if the new username already exists in the database
-                    if (DbUserQueries.getUser(newUsername) != null) {
+                    if (DbUserHandler.getUser(newUsername) != null) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("Aanmeld Fout");
                         errorAlert.setHeaderText(null);
@@ -116,7 +116,7 @@ public class WijzigSettingsController implements SetObserver {
                     settings.setNewPassword(newPassword);
                 }
 
-                if (DbUserQueries.updateUser(loggedInUser, oldUsername)) {
+                if (DbUserHandler.updateUser(loggedInUser, oldUsername)) {
                     currentEmailField.setText(loggedInUser.getEmail());
                     currentUsernameField.setText(loggedInUser.getUsername());
                     currentPasswordField.setText(loggedInUser.getPassword());

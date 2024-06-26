@@ -212,7 +212,7 @@ public class ChatBoxController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             for (Chat chat : chats) {
                 if (!chat.isLoadedFromDB()) {
-                    DbChatQueries.insertChatMessage(chat);
+                    DbChatHandler.insertChatMessage(chat);
                 }
             }
             chats.clear();
@@ -238,7 +238,7 @@ public class ChatBoxController {
         chats.clear();
         chatList.clear();
 
-        List<Chat> userChats = DbChatQueries.selectAllChatMessages(username);
+        List<Chat> userChats = DbChatHandler.selectAllChatMessages(username);
         chats.addAll(userChats);
 
         for (Chat chat : userChats) {

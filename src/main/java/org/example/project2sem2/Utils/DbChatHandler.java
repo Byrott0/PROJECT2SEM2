@@ -10,19 +10,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DbChatQueries {
+public class DbChatHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(DbChatQueries.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(DbChatHandler.class);
+    private static final MySQLAdapter databaseAdapter = new MySQLAdapter();
 
 
     public static void insertChatMessage(Chat chat) {
         String insertSQL = "INSERT INTO chat (message, username, subject) VALUES (?, ?, ?)";
 
-        try (Connection conn = DbConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+        try (Connection conn = databaseAdapter.getConnection(); PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
             pstmt.setString(1, chat.getHistory());
             pstmt.setString(2, LoggedInUser.getInstance().getUser().getUsername());
-            pstmt.setString(3, chat.getName()); // Get the name of the chat
+            pstmt.setString(3, chat.getName());
             pstmt.executeUpdate();
             System.out.println("Record inserted successfully");
         } catch (SQLException e) {
@@ -30,17 +30,17 @@ public class DbChatQueries {
         }
     }
 
-    public static List<Chat> selectAllChatMessages(String username) {
+    public  static List<Chat> selectAllChatMessages(String username) {
         String selectSQL = "SELECT id, message, username, subject FROM chat WHERE username = ?";
         List<Chat> chats = new ArrayList<>();
 
-        try (Connection conn = DbConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+        try (Connection conn = databaseAdapter.getConnection(); PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
             pstmt.setString(1, username);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     String message = rs.getString("message");
                     String subject = rs.getString("subject");
-                    Chat chat = new Chat(subject, subject, true); // Set loadedFromDB to true
+                    Chat chat = new Chat(subject, subject, true);
                     chat.setHistory(message);
                     chats.add(chat);
                 }
