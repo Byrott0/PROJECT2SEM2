@@ -1,20 +1,19 @@
 package org.example.project2sem2.Model;
 
-public class User {
+import org.example.project2sem2.Utils.SetObserver;
+
+public class User implements SetObserver {
     private String username;
     private String password;
     private String email;
-    private History history;
 
-    // Parameterized constructor
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.history = new History();
     }
 
-    // Getter and Setter for username
+
     public String getUsername() {
         return username;
     }
@@ -40,4 +39,8 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public void update(String info) {
+        System.out.println("Settings updated with info: " + info);
+    }
 }

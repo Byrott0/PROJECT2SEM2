@@ -7,7 +7,7 @@ import org.example.project2sem2.Controller.ChatBoxController;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chatbot implements SetObserver {
+public class Chatbot {
     private Chat chat;
     private ChatBoxController chatBoxController;
     private TextField typetextID;
@@ -25,11 +25,5 @@ public class Chatbot implements SetObserver {
         this.chats = new ArrayList<>();
         this.textAreaID = textAreaID;
         this.typetextID = typetextID;
-    }
-
-
-    @Override
-    public void update(String info) {
-        textAreaID.appendText("Settings updated with info: " + info + "\n");
     }
 }

@@ -29,7 +29,7 @@ public class Settings {
 
 
     protected void notifyObserver(String info) {
-        this.changeInfo = info; // Store the settings change information
+        this.changeInfo = info;
         if (observer != null) {
             observer.update(info);
         }
