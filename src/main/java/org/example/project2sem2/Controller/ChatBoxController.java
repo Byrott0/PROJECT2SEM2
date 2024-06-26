@@ -56,7 +56,7 @@ public class ChatBoxController {
 
     public Languages language = Languages.NL;
 
-    private int chatIndex = -1;
+    private int chatIndex = 1;
 
     private Chatbot chatbot;
     private SearchEngine searchEngine;
