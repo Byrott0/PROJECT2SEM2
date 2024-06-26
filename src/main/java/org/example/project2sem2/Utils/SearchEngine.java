@@ -1,22 +1,38 @@
 package org.example.project2sem2.Utils;
 
-import org.example.project2sem2.Controller.ChatBoxController;
-
+import java.nio.file.*;
+import java.io.IOException;
 import java.util.*;
 
 public class SearchEngine {
+    private Map<String, String> keywordSources; // Map to hold the source for each keyword
     private Map<String, Map<String, String>> keywordResponses;
-
-    ChatBoxController chatboxcontroller = new ChatBoxController();
     private Languages languageCode;
+    private ResourceSelector resourceSelector;
+    private ElasticSearch elasticSearch;
 
-    public SearchEngine() {
+    public SearchEngine(Languages initialLanguage) {
+        keywordSources = new HashMap<>();
         keywordResponses = new HashMap<>();
+        resourceSelector = new ResourceSelector();
+        elasticSearch = new ElasticSearch();
+        this.languageCode = initialLanguage;  // Set the initial language code here
+        loadKeywordSources();
         loadKeywordResponses();
     }
 
+    private void loadKeywordSources() {
+        // Define the source for each keyword
+        keywordSources.put(Keywords.JAVA.getKey(), "ResourceSelector");
+        keywordSources.put(Keywords.PYTHON.getKey(), "ResourceSelector");
+        keywordSources.put(Keywords.LANGUAGE.getKey(), "ResourceSelector");
+        keywordSources.put(Keywords.SOCIAL_PLATFORM_APPLICATION.getKey(), "ElasticSearch");
+        keywordSources.put(Keywords.FINANCIAL_SYSTEM.getKey(), "ElasticSearch");
+        keywordSources.put(Keywords.DOMAIN_MODEL.getKey(), "ElasticSearch");
+        // Add more keywords and their respective sources as needed
+    }
+
     private void loadKeywordResponses() {
-        this.languageCode = chatboxcontroller.getLanguage();
         FileProcessor fileProcessor = new FileProcessor();
 
         for (Keywords keyword : Keywords.values()) {
@@ -32,60 +48,49 @@ public class SearchEngine {
             return Collections.emptyList();
         }
 
-        List<String> results = new ArrayList<>();
-        for (String key : keywordResponses.keySet()) {
-            if (key.contains(query.toLowerCase())) {
-                results.add(key);
-            }
+        String source = keywordSources.get(query);
+        if (source == null) {
+            return Collections.singletonList("No documentation found for the provided keyword.");
         }
+
+        List<String> results = new ArrayList<>();
+        String response;
+
+        switch (source) {
+            case "ResourceSelector":
+                response = resourceSelector.getDocumentation(query);
+                break;
+            case "ElasticSearch":
+                response = elasticSearch.searchDocumentation(query);
+                break;
+            default:
+                response = "No documentation found for the provided keyword.";
+        }
+
+        if (!response.contains("No documentation found")) {
+            results.add(loadResponseFromFile(query, source));
+        } else {
+            results.add(response);
+        }
+
         return results;
     }
 
-    public String findKey(String question) {
-        for (Keywords keyword : Keywords.values()) {
-            if (question.contains(keyword.getKey())) {
-                return keyword.getKey();
-            }
+    private String loadResponseFromFile(String keyword, String source) {
+        String filePath = "src/main/resources/files/" + languageCode + "/" + source + "/" + keyword + ".txt";
+        try {
+            return new String(Files.readAllBytes(Paths.get(filePath)));
+        } catch (IOException e) {
+            return "Error loading file: " + filePath;
         }
-        return null;
+    }
+
+    public void setLanguagecode(Languages language) {
+        this.languageCode = language;
+        loadKeywordResponses(); // Reload responses for the new language
     }
 
     public List<String> getKeys() {
-        List<String> keys = new ArrayList<>();
-        for (Keywords keyword : Keywords.values()) {
-            keys.add(keyword.getKey());
-        }
-        return keys;
-    }
-
-    public String findAnswer(String question) {
-        if (question == null || question.trim().isEmpty()) {
-            return "No data found for the question: " + question;
-        }
-
-        return findAnswerByKeyAndLanguage(findKey(question), languageCode);
-    }
-
-    public String findAnswerByKeyAndLanguage(String key, Languages languageCode) {
-        if (!keywordResponses.containsKey(key)) {
-            return "";
-        }
-        String filepath = "src/main/resources/files/" + languageCode + "/" + key + ".txt";
-        return new FileProcessor().loadDataFromFile(filepath);
-    }
-
-    public String getResponse(String input) {
-        String key = findKey(input);
-        if (key != null) {
-            Map<String, String> languageResponses = keywordResponses.get(key);
-            if (languageResponses != null) {
-                return languageResponses.get(languageCode);
-            }
-        }
-        return findAnswer(input);
-    }
-
-    public void setLanguagecode(Languages languagecode) {
-        this.languageCode = languagecode;
+        return new ArrayList<>(keywordSources.keySet());
     }
 }

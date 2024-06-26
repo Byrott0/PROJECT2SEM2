@@ -36,6 +36,7 @@ public class ChatBoxController {
 
     @FXML
     private TextField typetextID;
+
     @FXML
     private Button textfieldEnterID;
 
@@ -76,10 +77,9 @@ public class ChatBoxController {
             String userQuestion = typetextID.getText();
             textAreaID.appendText("\nQ: " + userQuestion); // Add the question to the TextArea
 
-            String keyword = searchEngine.findKey(userQuestion);
-            if (keyword != null) {
-                String botAnswer = searchEngine.findAnswerByKeyAndLanguage(keyword, language);
-                textAreaID.appendText("\nA: " + botAnswer); // Add the answer to the TextArea
+            List<String> responses = searchEngine.search(userQuestion);
+            for (String response : responses) {
+                textAreaID.appendText("\nA: " + response); // Add the answer to the TextArea
             }
 
             typetextID.setText("");
@@ -113,15 +113,14 @@ public class ChatBoxController {
 
         loadChatsForLoggedInUser();
 
+        this.searchEngine = new SearchEngine(language); // Initialize SearchEngine with the current language
 
-        chatbot = new Chatbot(this, new SearchEngine(), textAreaID, typetextID);
+        chatbot = new Chatbot(this, searchEngine, textAreaID, typetextID);
         typetextID.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 checkText();
             }
         });
-
-        this.searchEngine = new SearchEngine();
 
         List<String> keywords = searchEngine.getKeys();
 
@@ -160,6 +159,7 @@ public class ChatBoxController {
         uitloggenID.setText("Uitloggen");
         setLoggedInUserText("Ingelogd als: ");
         newSubjectID.setPromptText("Nieuw onderwerp");
+        searchEngine.setLanguagecode(language); // Update SearchEngine language
     }
 
     @FXML
@@ -173,7 +173,7 @@ public class ChatBoxController {
         newSubjectID.setPromptText("New subject");
         language = Languages.UK;
         System.out.println("Language set to English");
-        searchEngine.setLanguagecode(language);
+        searchEngine.setLanguagecode(language); // Update SearchEngine language
     }
 
     public void addChat() {
